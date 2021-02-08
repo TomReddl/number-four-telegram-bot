@@ -16,6 +16,7 @@ public class BotNumberForApplication {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(new Bot(getenv.get("BOT_NAME"), getenv.get("TOKEN")));
+            log.info("start bot");
         } catch (TelegramApiException ex) {
             log.error("bot initialization error", ex);
         }
