@@ -14,23 +14,15 @@ public class NonCommand {
         Settings settings;
         String answer;
         try {
-            log.debug(String.format("Пользователь %s. Пробуем создать объект настроек из сообщения \"%s\"",
-                    userName, text));
+
             settings = createSettings(text);
             saveUserSettings(chatId, settings);
-            log.debug(String.format("Пользователь %s. Объект настроек из сообщения \"%s\" создан и сохранён",
-                    userName, text));
             answer = "Настройки обновлены. Вы всегда можете их посмотреть с помощью /settings";
         } catch (IllegalSettingsException e) {
-            log.debug(String.format("Пользователь %s. Не удалось создать объект настроек из сообщения \"%s\". " +
-                    "%s", userName, text, e.getMessage()));
             answer = e.getMessage() +
                     "\n\n❗ Настройки не были изменены. Вы всегда можете их посмотреть с помощью /settings";
         } catch (Exception e) {
-            log.debug(String.format("Пользователь %s. Не удалось создать объект настроек из сообщения \"%s\". " +
-                    "%s. %s", userName, text, e.getClass().getSimpleName(), e.getMessage()));
-            answer = "Простите, я не понимаю Вас. Похоже, что Вы ввели сообщение, не соответствующее формату, или " +
-                    "использовали слишком большие числа\n\n" +
+            answer = "Простите, я не понимаю Вас. \n" +
                     "Возможно, Вам поможет /help";
         }
 

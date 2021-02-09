@@ -22,8 +22,8 @@ public class SettingsCommand extends ServiceCommand {
         var chatId = chat.getId();
         var settings = Bot.getUserSettings(chatId);
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                String.format("*Текущие настройки*\n" +
-                                "- playerId: %s\n",
+                String.format("Текущие настройки:\n" +
+                                "    playerId: %s\n",
                         settings.getPlayerId())
         );
     }
