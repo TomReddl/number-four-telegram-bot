@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
-import ru.femirion.telegram.number4bot.Utils;
+import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 /**
  * Команда "Помощь"
@@ -17,7 +17,7 @@ public class HelpCommand extends ServiceCommand {
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
-        String userName = Utils.getUserName(user);
+        String userName = UserUtils.getUserName(user);
 
         log.debug(String.format("Пользователь %s.  %s", userName,
                 this.getCommandIdentifier()));

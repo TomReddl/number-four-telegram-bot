@@ -7,7 +7,10 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import ru.femirion.telegram.number4bot.Utils;
+import ru.femirion.telegram.number4bot.entity.GameObject;
+import ru.femirion.telegram.number4bot.entity.Player;
+import ru.femirion.telegram.number4bot.utils.JsonUtils;
+import ru.femirion.telegram.number4bot.utils.UserUtils;
 import ru.femirion.telegram.number4bot.telegram.commands.service.HelpCommand;
 import ru.femirion.telegram.number4bot.telegram.commands.service.RegisterCommand;
 import ru.femirion.telegram.number4bot.telegram.commands.service.SettingsCommand;
@@ -16,7 +19,9 @@ import ru.femirion.telegram.number4bot.telegram.nonCommand.NonCommand;
 import ru.femirion.telegram.number4bot.telegram.nonCommand.Settings;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 public final class Bot extends TelegramLongPollingCommandBot {
@@ -30,6 +35,10 @@ public final class Bot extends TelegramLongPollingCommandBot {
     private final NonCommand nonCommand;
     @Getter
     private static Map<Long, Settings> userSettings;
+    @Getter
+    private static List<Player> players;
+    @Getter
+    private static List<GameObject> gameObjects;
 
     public Bot(String botName, String botToken) {
         super();
@@ -41,6 +50,8 @@ public final class Bot extends TelegramLongPollingCommandBot {
         register(new SettingsCommand("settings", "Мои настройки"));
         register(new RegisterCommand("register", "Войти с id игрока"));
         userSettings = new HashMap<>();
+        players = JsonUtils.getPlayers();
+        gameObjects = JsonUtils.getObjects();
     }
 
     @Override
@@ -57,10 +68,16 @@ public final class Bot extends TelegramLongPollingCommandBot {
     public void processNonCommandUpdate(Update update) {
         Message msg = update.getMessage();
         Long chatId = msg.getChatId();
-        String userName = Utils.getUserName(msg);
+        String userName = UserUtils.getUserName(msg);
 
         String answer = nonCommand.nonCommandExecute(chatId, userName, msg.getText());
         setAnswer(chatId, userName, answer);
+    }
+
+    public static Optional<Player> findPlayer(String playerId) {
+        return players.stream()
+                .filter(p -> playerId.equals(p.getPlayerId()))
+                .findAny();
     }
 
     public static Settings getUserSettings(Long chatId) {

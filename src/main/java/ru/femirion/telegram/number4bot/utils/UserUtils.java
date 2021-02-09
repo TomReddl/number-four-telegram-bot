@@ -1,11 +1,11 @@
-package ru.femirion.telegram.number4bot;
+package ru.femirion.telegram.number4bot.utils;
 
 import lombok.experimental.UtilityClass;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.User;
 
 @UtilityClass
-public class Utils {
+public class UserUtils {
 
     public static String getUserName(Message msg) {
         return getUserName(msg.getFrom());

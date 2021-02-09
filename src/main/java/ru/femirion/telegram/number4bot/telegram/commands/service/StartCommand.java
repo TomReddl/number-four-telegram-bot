@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
-import ru.femirion.telegram.number4bot.Utils;
+import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 @Slf4j
 public class StartCommand extends ServiceCommand {
@@ -14,7 +14,7 @@ public class StartCommand extends ServiceCommand {
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
-        String userName = Utils.getUserName(user);
+        String userName = UserUtils.getUserName(user);
 
         log.debug(String.format("Пользователь %s. Начато выполнение команды %s", userName,
                 this.getCommandIdentifier()));

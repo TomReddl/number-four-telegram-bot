@@ -1,0 +1,22 @@
+[
+  {
+    "playerId": "first-player-id",
+    "name": "Дима Дмитриев",
+    "desc": "Квента персонажа1",
+    "objects": [
+      "umbrellaId"
+    ],
+    "actions": [
+      "explore"
+    ]
+  },
+  {
+    "playerId": "second-player-id",
+    "name": "Коля Колянов",
+    "desc": "Квента персонажа2",
+    "objects": [
+    ],
+    "actions": [
+    ]
+  }
+]

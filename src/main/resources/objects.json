@@ -1,0 +1,19 @@
+[
+  {
+    "objectId": "umbrellaId",
+    "name": "Зонтик",
+    "desc": "Описание зонтика",
+    "actions": [
+      "explore",
+      "fight"
+    ]
+  },
+  {
+    "objectId": "lighterId",
+    "name": "Зажигалка",
+    "desc": "Описание зажигалки",
+    "actions": [
+      "escape"
+    ]
+  }
+]
