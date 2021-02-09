@@ -22,12 +22,16 @@ public class RegisterCommand extends ServiceCommand {
         var userName = Utils.getUserName(user);
 
         var chatId = chat.getId();
-        var settings = Bot.getUserSettings().get(chatId);
-        if (settings != null) {
-            log.info("current settings, playerId={}, userName={}, Strings={}", settings.getPlayerId(), user, Arrays.toString(strings));
-        }
 
-        savePlayer(chatId, strings[0]);
+
+        var settings = Bot.getUserSettings().get(chatId);
+
+        if (settings == null) {
+            settings = new Settings("playerId");
+            Bot.getUserSettings().put(chatId, settings);
+        }
+        settings.setPlayerId(strings[0]);
+        log.info("current settings, playerId={}, userName={}, Strings={}", settings.getPlayerId(), user, Arrays.toString(strings));
 
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 String.format("*Регистрация прошла успешно!*\n" +
@@ -36,14 +40,5 @@ public class RegisterCommand extends ServiceCommand {
                         settings.getPlayerId(),
                         user)
         );
-    }
-
-
-    private void savePlayer(Long chatId, String playerId) {
-        var settings = Bot.getUserSettings().get(chatId);
-        if (settings == null) {
-            settings = new Settings("");
-        }
-        settings.setPlayerId(playerId);
     }
 }
