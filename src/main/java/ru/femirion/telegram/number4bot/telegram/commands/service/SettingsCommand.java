@@ -32,11 +32,11 @@ public class SettingsCommand extends ServiceCommand {
         }
 
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                String.format("Информация о персонаже:\n" +
-                                "    playerId: %s\n",
-                                "    playerName: %s\n",
-                                "    desc: %s\n",
-                                "    objects: %s\n",
+                String.format("*Информация о персонаже:*\n" +
+                                "    playerId: %s\n" +
+                                "    playerName: %s\n" +
+                                "    desc: %s\n" +
+                                "    objects: %s\n" +
                                 "    actions: %s\n",
                         settings.getPlayerId(),
                         settings.getPlayer().getName(),

@@ -47,10 +47,10 @@ public class RegisterCommand extends ServiceCommand {
 
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 String.format("*Регистрация прошла успешно!*\n" +
-                                "- payerId: %s\n" +
-                                "- userName: %s\n",
-                                "- playerName: %s",
-                        settings.getPlayerId(),
+                                "   payerId: %s\n" +
+                                "   userInfo: %s\n" +
+                                "   playerName: %s",
+                        playerId,
                         user,
                         player.getName())
         );
