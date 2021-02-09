@@ -6,7 +6,6 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.Utils;
 import ru.femirion.telegram.number4bot.telegram.Bot;
-import ru.femirion.telegram.number4bot.telegram.nonCommand.Settings;
 
 /**
  * Команда получения текущих настроек
@@ -19,23 +18,13 @@ public class SettingsCommand extends ServiceCommand {
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
-        String userName = Utils.getUserName(user);
-
-        log.debug(String.format("Пользователь %s. Начато выполнение команды %s", userName,
-                this.getCommandIdentifier()));
-
-        Long chatId = chat.getId();
-        Settings settings = Bot.getUserSettings(chatId);
+        var userName = Utils.getUserName(user);
+        var chatId = chat.getId();
+        var settings = Bot.getUserSettings(chatId);
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 String.format("*Текущие настройки*\n" +
-                                "- минимальное число, использующееся в заданиях - *%s*\n" +
-                                "- максимальное число, использующееся в заданиях - *%s*\n" +
-                                "- число страниц итогового файла - *%s*\n\n" +
-                                "Если Вы хотите изменить эти параметры, введите через пробел или запятую 3 числа - " +
-                                "минимальное число, максимальное число и количество страниц в файле (не более 10)\n\n" +
-                                "\uD83D\uDC49 Например, 3,15,6 или 4 17 3"));
-
-        log.debug(String.format("Пользователь %s. Завершено выполнение команды %s", userName,
-                this.getCommandIdentifier()));
+                                "- playerId: %s\n",
+                        settings.getPlayerId())
+        );
     }
 }
