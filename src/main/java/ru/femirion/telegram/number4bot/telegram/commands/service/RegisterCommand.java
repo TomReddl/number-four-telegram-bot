@@ -23,7 +23,10 @@ public class RegisterCommand extends ServiceCommand {
 
         var chatId = chat.getId();
         var settings = Bot.getUserSettings().get(chatId);
-        log.info("current settings, playerId={}, userName={}, Strings={}", settings.getPlayerId(), user, Arrays.toString(strings));
+        if (settings != null) {
+            log.info("current settings, playerId={}, userName={}, Strings={}", settings.getPlayerId(), user, Arrays.toString(strings));
+        }
+
         savePlayer(chatId, strings[0]);
 
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
