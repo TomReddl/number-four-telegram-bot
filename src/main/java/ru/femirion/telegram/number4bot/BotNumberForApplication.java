@@ -8,6 +8,7 @@ import ru.femirion.telegram.number4bot.entity.Player;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -35,7 +36,7 @@ public class BotNumberForApplication {
     private static Runnable creatNotificationThread(Bot bot) {
         return () -> {
             while (!executor.isShutdown()) {
-                var now = LocalDateTime.now();
+                var now = ZonedDateTime.now();
                 var players = Bot.getPlayers();
                 for (Player player : players) {
                     if (player.getTimeNextNotification() != null

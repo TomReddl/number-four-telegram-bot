@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -17,6 +17,6 @@ public class Player {
   private String desc;
   private List<String> objects;
   private List<String> actions;
-  private LocalDateTime timeNextNotification;
+  private ZonedDateTime timeNextNotification;
   private String textNextNotification;
 }
