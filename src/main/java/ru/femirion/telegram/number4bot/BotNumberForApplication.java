@@ -7,16 +7,16 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import ru.femirion.telegram.number4bot.entity.Player;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class BotNumberForApplication {
     private static final Map<String, String> ENV = System.getenv();
-    private static final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private static final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();;
 
     public static void main(String[] args) {
         try {
@@ -26,7 +26,7 @@ public class BotNumberForApplication {
             log.info("start bot");
 
             var notificationThread = creatNotificationThread(bot);
-            executor.submit(notificationThread);
+            executor.scheduleAtFixedRate(notificationThread, 30, 10, TimeUnit.SECONDS);
         } catch (TelegramApiException ex) {
             log.error("bot initialization error", ex);
         }
@@ -36,16 +36,21 @@ public class BotNumberForApplication {
     private static Runnable creatNotificationThread(Bot bot) {
         return () -> {
             while (!executor.isShutdown()) {
-                var now = ZonedDateTime.now();
-                var players = Bot.getPlayers();
-                for (Player player : players) {
-                    if (player.getTimeNextNotification() != null
-                            && player.getTimeNextNotification().isBefore(now)
-                            && player.getTextNextNotification() != null) {
-                        bot.sendToPlayer(player.getChatId(), player.getName(), player.getTextNextNotification());
-                        player.setTimeNextNotification(null);
-                        player.setTextNextNotification(null);
+                try {
+                    var now = ZonedDateTime.now();
+                    var players = Bot.getPlayers();
+                    for (Player player : players) {
+                        if (player.getTimeNextNotification() != null
+                                && player.getTimeNextNotification().isBefore(now)
+                                && player.getTextNextNotification() != null) {
+                            bot.sendToPlayer(player.getChatId(), player.getName(), player.getTextNextNotification());
+                            log.debug("send notification to player={}, text={}", player.getName(), player.getTextNextNotification());
+                            player.setTimeNextNotification(null);
+                            player.setTextNextNotification(null);
+                        }
                     }
+                } catch (Exception ex) {
+                    log.error("error in notification thread", ex);
                 }
             }
         };
