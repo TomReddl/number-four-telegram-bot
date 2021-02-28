@@ -43,6 +43,12 @@ public class RegisterCommand extends ServiceCommand {
             Bot.getUserSettings().put(chatId, settings);
         }
         player.setChatId(chatId);
+
+        // TODO remove it!!!
+        var now = ZonedDateTime.now().plusMinutes(1);
+        player.setTimeNextNotification(now);
+        player.setTextNextNotification("from server!!!");
+
         settings.setPlayerId(args[0]);
         settings.setPlayer(player);
 
@@ -56,10 +62,5 @@ public class RegisterCommand extends ServiceCommand {
                         player.getName())
         );
         log.info("player registration, playerId={}, userName={}, playerId={}", settings.getPlayerId(), user, playerId);
-
-        // TODO remove it!!!
-        var now = ZonedDateTime.now().plusMinutes(1);
-        player.setTimeNextNotification(now);
-        player.setTextNextNotification("from server!!!");
     }
 }

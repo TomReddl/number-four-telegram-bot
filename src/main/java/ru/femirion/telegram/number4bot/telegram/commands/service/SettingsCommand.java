@@ -37,12 +37,16 @@ public class SettingsCommand extends ServiceCommand {
                                 "    playerName: %s\n" +
                                 "    desc: %s\n" +
                                 "    objects: %s\n" +
-                                "    actions: %s\n",
+                                "    actions: %s\n" +
+                                "    time: %s\n" +
+                                "    text: %s\n",
                         settings.getPlayerId(),
                         settings.getPlayer().getName(),
                         settings.getPlayer().getDesc(),
                         settings.getPlayer().getObjects(),
-                        settings.getPlayer().getActions())
+                        settings.getPlayer().getActions(),
+                        settings.getPlayer().getTimeNextNotification(),
+                        settings.getPlayer().getTextNextNotification())
         );
     }
 }

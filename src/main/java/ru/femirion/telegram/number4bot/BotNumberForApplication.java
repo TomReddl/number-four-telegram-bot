@@ -26,7 +26,7 @@ public class BotNumberForApplication {
             log.info("start bot");
 
             var notificationThread = creatNotificationThread(bot);
-            executor.scheduleAtFixedRate(notificationThread, 30, 10, TimeUnit.SECONDS);
+            executor.scheduleAtFixedRate(notificationThread, 5, 10, TimeUnit.SECONDS);
         } catch (TelegramApiException ex) {
             log.error("bot initialization error", ex);
         }
@@ -35,6 +35,7 @@ public class BotNumberForApplication {
 
     private static Runnable creatNotificationThread(Bot bot) {
         return () -> {
+            log.debug("start monitoring notification");
             while (!executor.isShutdown()) {
                 try {
                     var now = ZonedDateTime.now();
@@ -53,6 +54,7 @@ public class BotNumberForApplication {
                     log.error("error in notification thread", ex);
                 }
             }
+            log.debug("end monitoring notification");
         };
     }
 }
