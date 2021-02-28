@@ -8,9 +8,7 @@
     ],
     "actions": [
       "explore"
-    ],
-    "timeNextNotification": "2021-02-28T18:36:44+03:00",
-    "textNextNotification": "текст нотификации"
+    ]
   },
   {
     "playerId": "second-player-id",
