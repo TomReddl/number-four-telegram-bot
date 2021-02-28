@@ -16,8 +16,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class BotNumberForApplication {
   private static final Map<String, String> ENV = System.getenv();
-  private static final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-  ;
+  private static final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
   public static void main(String[] args) {
     try {
