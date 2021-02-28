@@ -9,12 +9,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.femirion.telegram.number4bot.entity.GameObject;
 import ru.femirion.telegram.number4bot.entity.Player;
+import ru.femirion.telegram.number4bot.telegram.commands.service.*;
 import ru.femirion.telegram.number4bot.utils.JsonUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
-import ru.femirion.telegram.number4bot.telegram.commands.service.HelpCommand;
-import ru.femirion.telegram.number4bot.telegram.commands.service.RegisterCommand;
-import ru.femirion.telegram.number4bot.telegram.commands.service.SettingsCommand;
-import ru.femirion.telegram.number4bot.telegram.commands.service.StartCommand;
 import ru.femirion.telegram.number4bot.telegram.nonCommand.NonCommand;
 import ru.femirion.telegram.number4bot.telegram.nonCommand.Settings;
 
@@ -71,7 +68,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
         String userName = UserUtils.getUserName(msg);
 
         String answer = nonCommand.nonCommandExecute(chatId, userName, msg.getText());
-        setAnswer(chatId, userName, answer);
+        sendToPlayer(chatId, userName, answer);
     }
 
     public static Optional<Player> findPlayer(String playerId) {
@@ -89,7 +86,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
         return settings;
     }
 
-    private void setAnswer(Long chatId, String userName, String text) {
+    public void sendToPlayer(Long chatId, String userName, String text) {
         SendMessage answer = new SendMessage();
         answer.setText(text);
         answer.setChatId(chatId.toString());

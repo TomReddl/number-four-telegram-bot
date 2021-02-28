@@ -42,6 +42,7 @@ public class RegisterCommand extends ServiceCommand {
             settings = new Settings(playerId);
             Bot.getUserSettings().put(chatId, settings);
         }
+        player.setChatId(chatId);
         settings.setPlayerId(args[0]);
         settings.setPlayer(player);
 

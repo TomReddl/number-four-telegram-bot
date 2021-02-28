@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -11,8 +12,11 @@ import java.util.List;
 @Data
 public class Player {
   private String playerId;
+  private Long chatId;
   private String name;
   private String desc;
   private List<String> objects;
   private List<String> actions;
+  private LocalDateTime timeNextNotification;
+  private String textNextNotification;
 }
