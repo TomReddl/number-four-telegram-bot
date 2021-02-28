@@ -25,7 +25,28 @@ public class BotNumberForApplication {
       botsApi.registerBot(bot);
       log.info("start bot");
 
-      var notificationThread = creatNotificationThread(bot);
+      Runnable notificationThread = () -> {
+        log.info("start monitoring notification");
+        try {
+          var now = ZonedDateTime.now();
+          var players = Bot.getPlayers();
+          for (Player player : players) {
+            if (player.getTimeNextNotification() != null
+                    && player.getTimeNextNotification().isBefore(now)
+                    && player.getTextNextNotification() != null) {
+              bot.sendToPlayer(player.getChatId(), player.getName(), player.getTextNextNotification());
+              log.info("send notification to player={}, text={}", player.getName(), player.getTextNextNotification());
+              player.setTimeNextNotification(null);
+              player.setTextNextNotification(null);
+            }
+          }
+        } catch (Exception ex) {
+          log.error("error in notification thread", ex);
+        }
+        log.info("end monitoring notification");
+      };
+
+
       executor.scheduleAtFixedRate(notificationThread, 5, 10, TimeUnit.SECONDS);
     } catch (TelegramApiException ex) {
       log.error("bot initialization error", ex);
@@ -33,26 +54,4 @@ public class BotNumberForApplication {
     executor.shutdown();
   }
 
-  private static Runnable creatNotificationThread(Bot bot) {
-    return () -> {
-      log.info("start monitoring notification");
-      try {
-        var now = ZonedDateTime.now();
-        var players = Bot.getPlayers();
-        for (Player player : players) {
-          if (player.getTimeNextNotification() != null
-                  && player.getTimeNextNotification().isBefore(now)
-                  && player.getTextNextNotification() != null) {
-            bot.sendToPlayer(player.getChatId(), player.getName(), player.getTextNextNotification());
-            log.info("send notification to player={}, text={}", player.getName(), player.getTextNextNotification());
-            player.setTimeNextNotification(null);
-            player.setTextNextNotification(null);
-          }
-        }
-      } catch (Exception ex) {
-        log.error("error in notification thread", ex);
-      }
-      log.info("end monitoring notification");
-    };
-  }
 }
