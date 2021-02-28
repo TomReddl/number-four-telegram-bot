@@ -35,7 +35,7 @@ public class BotNumberForApplication {
 
     private static Runnable creatNotificationThread(Bot bot) {
         return () -> {
-            log.debug("start monitoring notification");
+            log.info("start monitoring notification");
             while (!executor.isShutdown()) {
                 try {
                     var now = ZonedDateTime.now();
@@ -45,7 +45,7 @@ public class BotNumberForApplication {
                                 && player.getTimeNextNotification().isBefore(now)
                                 && player.getTextNextNotification() != null) {
                             bot.sendToPlayer(player.getChatId(), player.getName(), player.getTextNextNotification());
-                            log.debug("send notification to player={}, text={}", player.getName(), player.getTextNextNotification());
+                            log.info("send notification to player={}, text={}", player.getName(), player.getTextNextNotification());
                             player.setTimeNextNotification(null);
                             player.setTextNextNotification(null);
                         }
@@ -54,7 +54,7 @@ public class BotNumberForApplication {
                     log.error("error in notification thread", ex);
                 }
             }
-            log.debug("end monitoring notification");
+            log.info("end monitoring notification");
         };
     }
 }
