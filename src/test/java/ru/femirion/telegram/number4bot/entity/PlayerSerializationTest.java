@@ -21,8 +21,7 @@ class PlayerSerializationTest {
     var result = new ObjectMapper().writeValueAsString(player);
 
     var expectedResult = "{\"playerId\":\"player1\",\"chatId\":123,\"name\":\"Vasia\",\"desc\":\"desc Vasia\"," +
-            "\"objects\":[\"fist-object\",\"second-object\"],\"actions\":[\"first-action\",\"second-action\"]," +
-            "\"timeNextNotification\":\"2021-02-28T18:36:44+0300\",\"textNextNotification\":\"text of notification\"}";
+            "\"objects\":[\"fist-object\",\"second-object\"],\"actions\":[\"first-action\",\"second-action\"]}";
     assertThat(expectedResult).isEqualTo(result);
   }
 
@@ -34,15 +33,12 @@ class PlayerSerializationTest {
 
     var result = new ObjectMapper().writeValueAsString(List.of(player1, player2, player3));
 
-    var expectedResult = "[{\"playerId\":\"player1\",\"chatId\":121,\"name\":\"Vasia\",\"desc\":\"desc Vasia\"," +
-            "\"objects\":[\"fist-object\",\"second-object\"],\"actions\":[\"first-action\",\"second-action\"]," +
-            "\"timeNextNotification\":\"2021-02-28T18:36:44+0300\",\"textNextNotification\":\"text of notification\"}" +
+    var expectedResult = "[{\"playerId\":\"player1\",\"chatId\":121,\"name\":\"Vasia\",\"desc\":\"desc Vasia\"" +
+            ",\"objects\":[\"fist-object\",\"second-object\"],\"actions\":[\"first-action\",\"second-action\"]}" +
             ",{\"playerId\":\"player2\",\"chatId\":122,\"name\":\"Petya\",\"desc\":\"desc Petya\"," +
-            "\"objects\":[\"fist-object\",\"second-object\"],\"actions\":[\"first-action\",\"second-action\"]," +
-            "\"timeNextNotification\":\"2021-02-28T18:36:44+0300\",\"textNextNotification\":\"text of notification\"}," +
-            "{\"playerId\":\"player3\",\"chatId\":123,\"name\":\"Natasha\",\"desc\":\"desc Natasha\"," +
-            "\"objects\":[\"fist-object\",\"second-object\"],\"actions\":[\"first-action\",\"second-action\"]," +
-            "\"timeNextNotification\":\"2021-02-28T18:36:44+0300\",\"textNextNotification\":\"text of notification\"}]";
+            "\"objects\":[\"fist-object\",\"second-object\"],\"actions\":[\"first-action\",\"second-action\"]}," +
+            "{\"playerId\":\"player3\",\"chatId\":123,\"name\":\"Natasha\",\"desc\":\"desc Natasha\"" +
+            ",\"objects\":[\"fist-object\",\"second-object\"],\"actions\":[\"first-action\",\"second-action\"]}]";
     assertThat(expectedResult).isEqualTo(result);
   }
 

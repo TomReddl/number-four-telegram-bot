@@ -46,6 +46,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
         register(new HelpCommand("help","Помощь"));
         register(new SettingsCommand("settings", "Мои настройки"));
         register(new RegisterCommand("register", "Войти с id игрока"));
+        register(new ExplorerCommand("exploring", "Изучить объект"));
         userSettings = new HashMap<>();
         players = JsonUtils.getPlayers();
         gameObjects = JsonUtils.getObjects();
@@ -74,6 +75,12 @@ public final class Bot extends TelegramLongPollingCommandBot {
     public static Optional<Player> findPlayer(String playerId) {
         return players.stream()
                 .filter(p -> playerId.equals(p.getPlayerId()))
+                .findAny();
+    }
+
+    public static Optional<GameObject> findObject(String objectId) {
+        return gameObjects.stream()
+                .filter(p -> objectId.equals(p.getObjectId()))
                 .findAny();
     }
 

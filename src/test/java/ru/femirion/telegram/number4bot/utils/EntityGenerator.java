@@ -24,9 +24,9 @@ public class EntityGenerator {
     var actions = List.of("first-action", "second-action");
     player.setActions(actions);
 
-    var time = ZonedDateTime.of(LocalDateTime.parse("2021-02-28T18:36:44"), ZoneId.of("Europe/Moscow"));
-    player.setTimeNextNotification(time);
-    player.setTextNextNotification("text of notification");
+    var time = LocalDateTime.parse("2021-02-28T18:36:44");
+    player.setStartExploringTime(time);
+    player.setExploringObjectId("1234-444");
 
     return player;
   }

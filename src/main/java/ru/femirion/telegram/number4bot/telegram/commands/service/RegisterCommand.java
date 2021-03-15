@@ -8,8 +8,6 @@ import ru.femirion.telegram.number4bot.telegram.Bot;
 import ru.femirion.telegram.number4bot.telegram.nonCommand.Settings;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
-import java.time.ZonedDateTime;
-
 @Slf4j
 public class RegisterCommand extends ServiceCommand {
 
@@ -43,11 +41,6 @@ public class RegisterCommand extends ServiceCommand {
             Bot.getUserSettings().put(chatId, settings);
         }
         player.setChatId(chatId);
-
-        // TODO remove it!!!
-        var now = ZonedDateTime.now().plusMinutes(1);
-        player.setTimeNextNotification(now);
-        player.setTextNextNotification("from server!!!");
 
         settings.setPlayerId(args[0]);
         settings.setPlayer(player);
