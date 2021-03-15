@@ -65,6 +65,7 @@ public class ExploringCommand extends ServiceCommand {
                                 + ". Информация об объекте: " + object.getDesc());
                 player.setExploringObjectId(null);
                 player.setStartExploringTime(null);
+                player.getObjects().add(object.getObjectId());
             }
             return;
         }
@@ -81,6 +82,13 @@ public class ExploringCommand extends ServiceCommand {
         if (objectOptional.isEmpty()) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Объект с таким objectId=" + objectId + " не найден. Проверьте правильность кода");
+            return;
+        }
+
+        if (player.getObjects().contains(objectId)) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                    "Вы уже изучили объект с таким objectId=" + objectId
+                            + ". Повторная информация об объекте:" + objectOptional.get().getDesc());
             return;
         }
 

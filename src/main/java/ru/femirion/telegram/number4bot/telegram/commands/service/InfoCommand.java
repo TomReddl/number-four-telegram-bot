@@ -8,8 +8,8 @@ import ru.femirion.telegram.number4bot.utils.UserUtils;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 
 @Slf4j
-public class SettingsCommand extends ServiceCommand {
-    public SettingsCommand(String identifier, String description) {
+public class InfoCommand extends ServiceCommand {
+    public InfoCommand(String identifier, String description) {
         super(identifier, description);
     }
 
@@ -20,29 +20,27 @@ public class SettingsCommand extends ServiceCommand {
         var settings = Bot.getUserSettings(chatId);
         if (settings == null) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вы не зарегистрированы в системе. Если у вас есть проблемы с регистрацией, то подойдите к мастеру");
+                    "Вы не зарегистрированы в системе. Если у вас есть проблемы с регистрацией, подойдите к мастеру");
             return;
         }
 
         var player = settings.getPlayer();
         if (player == null) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вы не зарегистрированы в системе. Если у вас есть проблемы с регистрацией, то подойдите к мастеру");
+                    "Вы не зарегистрированы в системе. Если у вас есть проблемы с регистрацией, подойдите к мастеру");
             return;
         }
 
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 String.format("*Информация о персонаже:*\n" +
-                                "    playerId: %s\n" +
-                                "    playerName: %s\n" +
-                                "    desc: %s\n" +
-                                "    objects: %s\n" +
-                                "    actions: %s\n",
+                                "    playerId: %s\n\n" +
+                                "    имя: %s\n\n" +
+                                "    квента: %s\n\n\n" +
+                                "    известные объекты: %s\n",
                         settings.getPlayerId(),
                         settings.getPlayer().getName(),
                         settings.getPlayer().getDesc(),
-                        settings.getPlayer().getObjects(),
-                        settings.getPlayer().getActions())
+                        settings.getPlayer().getObjects())
         );
     }
 }

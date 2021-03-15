@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -16,8 +17,8 @@ public class Player {
   private Long chatId;
   private String name;
   private String desc;
-  private List<String> objects;
-  private List<String> actions;
+  private List<String> objects = new ArrayList<>();
+  private List<String> actions = new ArrayList<>();
   @JsonIgnore
   private LocalDateTime startExploringTime;
   @JsonIgnore
