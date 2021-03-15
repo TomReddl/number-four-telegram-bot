@@ -24,7 +24,7 @@ public class RegisterCommand extends ServiceCommand {
 
         if (args.length != 1) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "команда должна содержать playerId");
+                    "Команда регистрации должна содержать playerId");
             return;
         }
 
@@ -32,7 +32,7 @@ public class RegisterCommand extends ServiceCommand {
         var playerOptional = Bot.findPlayer(playerId);
         if (playerOptional.isEmpty()) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "персонаж с таким playerId=" + playerId + " не найден. Подойдите к мастеру");
+                    "Персонаж с таким playerId=" + playerId + " не найден. Подойдите к мастеру");
             return;
         }
         var player = playerOptional.get();
@@ -48,10 +48,10 @@ public class RegisterCommand extends ServiceCommand {
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 String.format("*Регистрация прошла успешно!*\n" +
                                 "   payerId: %s\n" +
-                                "   userInfo: %s\n" +
-                                "   playerName: %s",
+                                "   имя: %s\n" +
+                                "   квента: %s",
                         playerId,
-                        user,
+                        player.getDesc(),
                         player.getName())
         );
         log.info("player registration, playerId={}, userName={}, playerId={}", settings.getPlayerId(), user, playerId);
