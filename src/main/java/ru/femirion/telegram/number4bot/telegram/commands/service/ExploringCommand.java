@@ -24,6 +24,13 @@ public class ExploringCommand extends ServiceCommand {
         var chatId = chat.getId();
         var settings = Bot.getUserSettings().get(chatId);
 
+        if (settings == null) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                    "Вы не зарегистрированы!!! Для регистрации необходимо выполнить команду" +
+                            " /register и указать ваш playerId");
+            return;
+        }
+
         var player = settings.getPlayer();
         if (player == null) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
