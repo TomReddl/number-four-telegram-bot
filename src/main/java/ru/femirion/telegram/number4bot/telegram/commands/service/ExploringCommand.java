@@ -104,15 +104,11 @@ public class ExploringCommand extends ServiceCommand {
         log.info("TIME!!!! days=" + days + " hours=" + hours + " munutes=" + minutes);
 
 
-        // todo increase to 30 minutes!!!
-        if (minutes > 2) {
-            return -1;
-        }
-
         if (days > 1 || hours > 1) {
             return -1;
         }
 
-        return (int) minutes;
+        // todo increase to 30 minutes!!!
+        return 2 - (int) minutes;
     }
 }
