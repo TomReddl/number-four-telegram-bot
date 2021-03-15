@@ -13,5 +13,6 @@ public class GameObject {
   private String objectId;
   private String name;
   private String desc;
+  private String photoId;
   private List<String> actions;
 }

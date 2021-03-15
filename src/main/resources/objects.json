@@ -3,6 +3,7 @@
     "objectId": "umbrellaId",
     "name": "Зонтик",
     "desc": "Описание зонтика",
+    "photoId": "zontik.png",
     "actions": [
       "explore",
       "fight"
@@ -12,6 +13,7 @@
     "objectId": "lighterId",
     "name": "Зажигалка",
     "desc": "Описание зажигалки",
+    "photoId": "zazhigalka.png",
     "actions": [
       "escape"
     ]

@@ -66,6 +66,7 @@ public class ExploringCommand extends ServiceCommand {
                 player.setExploringObjectId(null);
                 player.setStartExploringTime(null);
                 player.getObjects().add(object.getObjectId());
+                sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
             }
             return;
         }
@@ -85,10 +86,13 @@ public class ExploringCommand extends ServiceCommand {
             return;
         }
 
-        if (player.getObjects().contains(objectId)) {
+        if (player.getObjects().stream().anyMatch(objectId::equals)) {
+            var object = objectOptional.get();
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы уже изучили объект с таким objectId=" + objectId
-                            + ". Повторная информация об объекте:" + objectOptional.get().getDesc());
+                            + ". Повторная информация об объекте: " + object.getDesc());
+
+            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
             return;
         }
 

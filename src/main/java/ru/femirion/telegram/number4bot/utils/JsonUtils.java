@@ -28,7 +28,6 @@ public class JsonUtils {
     return mapper;
   }
 
-
   public static List<Player> getPlayers() {
     try {
       var path = "/" + JsonUtils.class.getProtectionDomain().getCodeSource().getLocation().getPath()  + "players.json";

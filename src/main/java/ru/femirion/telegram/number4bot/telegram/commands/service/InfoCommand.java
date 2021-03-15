@@ -33,14 +33,14 @@ public class InfoCommand extends ServiceCommand {
 
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 String.format("*Информация о персонаже:*\n" +
-                                "    playerId: %s\n\n" +
-                                "    имя: %s\n\n" +
-                                "    квента: %s\n\n\n" +
-                                "    известные объекты: %s\n",
+                                "    playerId: %s\n" +
+                                "    имя: %s\n" +
+                                "    известные объекты: %s\n\n" +
+                                "    квента: %s\n",
                         settings.getPlayerId(),
                         settings.getPlayer().getName(),
-                        settings.getPlayer().getDesc(),
-                        settings.getPlayer().getObjects())
+                        settings.getPlayer().getObjects(),
+                        settings.getPlayer().getDesc())
         );
     }
 }
