@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 @Slf4j
-public class ExplorerCommand extends ServiceCommand {
+public class ExploringCommand extends ServiceCommand {
 
-    public ExplorerCommand(String identifier, String description) {
+    public ExploringCommand(String identifier, String description) {
         super(identifier, description);
     }
 
@@ -90,9 +90,9 @@ public class ExplorerCommand extends ServiceCommand {
         var tempDateTime = LocalDateTime.from(startExploringTime);
         var days = tempDateTime.until(now, ChronoUnit.DAYS);
         tempDateTime = tempDateTime.plusDays(days);
-        var hours = tempDateTime.until(startExploringTime, ChronoUnit.HOURS);
+        var hours = tempDateTime.until(now, ChronoUnit.HOURS);
         tempDateTime = tempDateTime.plusHours(hours);
-        var minutes = tempDateTime.until(startExploringTime, ChronoUnit.MINUTES);
+        var minutes = tempDateTime.until(now, ChronoUnit.MINUTES);
 
         log.info("TIME!!!! days=" + days + " hours=" + hours + " munutes=" + minutes);
 

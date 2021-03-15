@@ -51,9 +51,9 @@ public class RegisterCommand extends ServiceCommand {
                                 "   имя: %s\n" +
                                 "   квента: %s",
                         playerId,
-                        player.getDesc(),
-                        player.getName())
+                        player.getName(),
+                        player.getDesc())
         );
-        log.info("player registration, playerId={}, userName={}, playerId={}", settings.getPlayerId(), user, playerId);
+        log.debug("player registration, playerId={}, userName={}, playerId={}", settings.getPlayerId(), user, playerId);
     }
 }

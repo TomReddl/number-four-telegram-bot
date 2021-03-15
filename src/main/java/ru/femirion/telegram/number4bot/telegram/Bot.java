@@ -46,7 +46,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
         register(new HelpCommand("help","Помощь"));
         register(new SettingsCommand("settings", "Мои настройки"));
         register(new RegisterCommand("register", "Войти с id игрока"));
-        register(new ExplorerCommand("exploring", "Изучить объект"));
+        register(new ExploringCommand("exploring", "Изучить объект"));
         userSettings = new HashMap<>();
         players = JsonUtils.getPlayers();
         gameObjects = JsonUtils.getObjects();
