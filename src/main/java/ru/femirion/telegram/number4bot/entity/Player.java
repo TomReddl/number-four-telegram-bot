@@ -18,9 +18,10 @@ public class Player {
   private String name;
   private String desc;
   private List<String> objects = new ArrayList<>();
-  private List<String> actions = new ArrayList<>();
   @JsonIgnore
   private LocalDateTime startExploringTime;
   @JsonIgnore
   private String exploringObjectId;
+  private long money;
+  private boolean canStartAuction;
 }

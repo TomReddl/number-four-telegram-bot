@@ -14,5 +14,10 @@ public class GameObject {
   private String name;
   private String desc;
   private String photoId;
-  private List<String> actions;
+  private boolean canBeExploring;
+  private String superObjectId;
+  private List<String> dependedObjects;
+  private List<String> activationOrder;
+  private String glassId;
+  private String glassDesc;
 }

@@ -1,12 +1,14 @@
 package ru.femirion.telegram.number4bot.telegram;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import ru.femirion.telegram.number4bot.entity.Auction;
 import ru.femirion.telegram.number4bot.entity.GameObject;
 import ru.femirion.telegram.number4bot.entity.Player;
 import ru.femirion.telegram.number4bot.telegram.commands.service.*;
@@ -36,17 +38,24 @@ public final class Bot extends TelegramLongPollingCommandBot {
     private static List<Player> players;
     @Getter
     private static List<GameObject> gameObjects;
+    @Getter @Setter
+    private static Auction auction;
 
     public Bot(String botName, String botToken) {
         super();
         this.BOT_NAME = botName;
         this.BOT_TOKEN = botToken;
         this.nonCommand = new NonCommand();
-        register(new StartCommand("start", "Старт"));
-        register(new HelpCommand("help","Помощь"));
-        register(new InfoCommand("info", "Моя информация"));
-        register(new RegisterCommand("register", "Войти с id игрока"));
-        register(new ExploringCommand("exploring", "Изучить объект"));
+        register(new HelpCommand("помощь","Помощь"));
+        register(new InfoCommand("моя-инфа", "Моя информация"));
+        register(new RegisterCommand("регистрация", "Войти с id игрока"));
+        register(new ExploringCommand("изучить", "Изучить объект"));
+        register(new ObjectInfoCommand("объект", "Информация об объекте"));
+        register(new CancelCommand("отмена", "Отмена исследования"));
+        register(new CancelCommand("очки", "Применение очков"));
+        register(new AuctionCommand("аукцион", "Аукцион"));
+        register(new BetAuctionCommand("ставка", "Ставка на аукционе"));
+        register(new CloseAuctionCommand("продано", "Завершение аукциона"));
         userSettings = new HashMap<>();
         players = JsonUtils.getPlayers();
         gameObjects = JsonUtils.getObjects();

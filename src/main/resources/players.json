@@ -6,9 +6,8 @@
     "objects": [
       "umbrellaId"
     ],
-    "actions": [
-      "explore"
-    ]
+    "money": 50000,
+    "canStartAuction": "true"
   },
   {
     "playerId": "second-player-id",
@@ -16,7 +15,7 @@
     "desc": "Квента персонажа2",
     "objects": [
     ],
-    "actions": [
-    ]
+    "money": 1000,
+    "canStartAuction": "false"
   }
 ]

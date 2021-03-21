@@ -19,15 +19,13 @@ public class InfoCommand extends ServiceCommand {
         var chatId = chat.getId();
         var settings = Bot.getUserSettings(chatId);
         if (settings == null) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вы не зарегистрированы в системе. Если у вас есть проблемы с регистрацией, подойдите к мастеру");
+            sendNotAutMessage(absSender, chatId, userName);
             return;
         }
 
         var player = settings.getPlayer();
         if (player == null) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вы не зарегистрированы в системе. Если у вас есть проблемы с регистрацией, подойдите к мастеру");
+            sendNotAutMessage(absSender, chatId, userName);
             return;
         }
 

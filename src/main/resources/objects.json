@@ -3,19 +3,24 @@
     "objectId": "umbrellaId",
     "name": "Зонтик",
     "desc": "Описание зонтика",
+    "canBeExploring": "true",
     "photoId": "zontik.png",
-    "actions": [
-      "explore",
-      "fight"
-    ]
+    "dependedObjects": [],
+    "activationOrder": [],
+    "superObjectId": "id",
+    "glassId": "glass id1",
+    "glassDesc": "glass desc1"
   },
   {
     "objectId": "lighterId",
     "name": "Зажигалка",
     "desc": "Описание зажигалки",
+    "canBeExploring": "false",
     "photoId": "zazhigalka.png",
-    "actions": [
-      "escape"
-    ]
+    "dependedObjects": [],
+    "activationOrder": [],
+    "superObjectId": "id",
+    "glassId": "glass id12",
+    "glassDesc": "glass desc2"
   }
 ]

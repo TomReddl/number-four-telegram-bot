@@ -18,12 +18,8 @@ public class HelpCommand extends ServiceCommand {
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
         String userName = UserUtils.getUserName(user);
-
-        log.debug(String.format("Пользователь %s.  %s", userName,
-                this.getCommandIdentifier()));
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                "Я тестовый бот.\n\n Желаю удачи\uD83D\uDE42");
-        log.debug(String.format("Пользователь %s. Завершено выполнение команды %s", userName,
-                this.getCommandIdentifier()));
+                "Я игровой бот.\n\n Если ты не знаешь как мной пользоватсья," +
+                        " то подойди к мастерам. Они тебе помогут. \n\n Желаю удачи\uD83D\uDE42");
     }
 }
