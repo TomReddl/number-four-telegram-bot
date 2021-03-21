@@ -33,12 +33,14 @@ public class InfoCommand extends ServiceCommand {
                 String.format("*Информация о персонаже:*\n" +
                                 "    playerId: %s\n" +
                                 "    имя: %s\n" +
-                                "    известные объекты: %s\n\n" +
-                                "    квента: %s\n",
+                                "    деньги: %s\n" +
+                                "    сейчас изучается: %s\n" +
+                                "    известные объекты: %s\n\n",
                         settings.getPlayerId(),
                         settings.getPlayer().getName(),
-                        settings.getPlayer().getObjects(),
-                        settings.getPlayer().getDesc())
+                        settings.getPlayer().getMoney(),
+                        settings.getPlayer().getExploringObjectId() == null ? settings.getPlayer().getExploringObjectId() : "---",
+                        settings.getPlayer().getObjects())
         );
     }
 }
