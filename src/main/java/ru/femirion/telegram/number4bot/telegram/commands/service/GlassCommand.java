@@ -32,7 +32,6 @@ public class GlassCommand extends ServiceCommand {
             return;
         }
 
-        // исследования еще не было, надо начать
         if (args.length != 1) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вызовите эту команду с идентификатором объекта, например: /очки ABCD");
@@ -47,11 +46,16 @@ public class GlassCommand extends ServiceCommand {
         }
 
         var object = objectOptional.get();
-        // исследования еще не было, надо начать
         if (object.getGlassId() != null) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы используете очки к объекту=" + objectId + ". Доступная информация: "
                             + object.getGlassDesc());
+            return;
+        }
+
+        // если объект пустышка
+        if (object.isFake()) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getDesc());
             return;
         }
 

@@ -20,4 +20,5 @@ public class GameObject {
   private List<String> activationOrder;
   private String glassId;
   private String glassDesc;
+  private boolean fake;
 }

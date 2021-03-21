@@ -98,6 +98,12 @@ public class ExploringCommand extends ServiceCommand {
             return;
         }
 
+        // если объект пустышка
+        if (object.isFake()) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getDesc());
+            return;
+        }
+
         player.setStartExploringTime(LocalDateTime.now());
         player.setExploringObjectId(objectId);
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Вы начали изучать объект с идентификатором="

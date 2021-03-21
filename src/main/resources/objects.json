@@ -9,7 +9,8 @@
     "activationOrder": [],
     "superObjectId": "id",
     "glassId": "glass id1",
-    "glassDesc": "glass desc1"
+    "glassDesc": "glass desc1",
+    "fake": "true"
   },
   {
     "objectId": "lighterId",
@@ -21,6 +22,6 @@
     "activationOrder": [],
     "superObjectId": "id",
     "glassId": "glass id12",
-    "glassDesc": "glass desc2"
+    "fake": "false"
   }
 ]
