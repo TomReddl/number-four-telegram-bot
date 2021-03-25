@@ -11,6 +11,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.femirion.telegram.number4bot.entity.Auction;
 import ru.femirion.telegram.number4bot.entity.GameObject;
 import ru.femirion.telegram.number4bot.entity.Player;
+import ru.femirion.telegram.number4bot.entity.Staff;
 import ru.femirion.telegram.number4bot.telegram.commands.service.*;
 import ru.femirion.telegram.number4bot.utils.JsonUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
@@ -40,6 +41,8 @@ public final class Bot extends TelegramLongPollingCommandBot {
     private static List<GameObject> gameObjects;
     @Getter @Setter
     private static Auction auction;
+    @Getter
+    private static List<Staff> staff;
 
     public Bot(String botName, String botToken) {
         super();
@@ -60,6 +63,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
         userSettings = new HashMap<>();
         players = JsonUtils.getPlayers();
         gameObjects = JsonUtils.getObjects();
+        staff = JsonUtils.getStaff();
     }
 
     @Override
@@ -90,6 +94,12 @@ public final class Bot extends TelegramLongPollingCommandBot {
 
     public static Optional<GameObject> findObject(String objectId) {
         return gameObjects.stream()
+                .filter(p -> objectId.equals(p.getObjectId()))
+                .findAny();
+    }
+
+    public static Optional<Staff> findStaff(String objectId) {
+        return staff.stream()
                 .filter(p -> objectId.equals(p.getObjectId()))
                 .findAny();
     }

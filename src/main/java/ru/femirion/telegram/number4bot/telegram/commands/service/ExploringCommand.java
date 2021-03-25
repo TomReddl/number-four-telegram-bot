@@ -126,6 +126,6 @@ public class ExploringCommand extends ServiceCommand {
         }
 
         // todo increase to 20 minutes!!!
-        return 3 - (int) minutes;
+        return 5 - (int) minutes;
     }
 }

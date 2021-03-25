@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
+import ru.femirion.telegram.number4bot.entity.SpecialStaffDesc;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
@@ -39,28 +40,30 @@ public class GlassCommand extends ServiceCommand {
         }
 
         var objectId = args[0];
-        var objectOptional = Bot.findObject(objectId);
-        if (objectOptional.isEmpty()) {
+        var staffOptional = Bot.findStaff(objectId);
+        if (staffOptional.isEmpty()) {
             sendObjectNotFoundMessage(absSender, chatId, userName, objectId);
             return;
         }
 
-        var object = objectOptional.get();
-        if (object.getGlassId() != null) {
+        if (Bot.findObject(objectId).isPresent()) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вы используете очки к объекту=" + objectId + ". Доступная информация: "
-                            + object.getGlassDesc());
+                    "К этому предмету нельзя использовать очки");
             return;
         }
 
-        // если объект пустышка
-        if (object.isFake()) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getDesc());
-            return;
+        var staff = staffOptional.get();
+        var specialDesc = staff.getSpecialDesc();
+        var desc = staff.getDesc();
+        if (!specialDesc.isEmpty()) {
+            var special = specialDesc.stream()
+                    .filter(s -> s.getPlayerId().equals(player.getPlayerId()))
+                    .map(SpecialStaffDesc::getSpecialDesc);
+            desc = desc + special;
         }
 
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "К этому объекту нельзя применить очки");
-
+                "Вы используете очки к объекту=" + objectId + ". Доступная информация: "
+                        + desc);
     }
 }

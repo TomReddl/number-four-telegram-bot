@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
 import lombok.experimental.UtilityClass;
 import ru.femirion.telegram.number4bot.entity.GameObject;
 import ru.femirion.telegram.number4bot.entity.Player;
+import ru.femirion.telegram.number4bot.entity.Staff;
 
 import java.io.File;
 import java.time.ZonedDateTime;
@@ -43,6 +44,15 @@ public class JsonUtils {
       return objectMapper.readValue(new File(path), new TypeReference<>(){});
     } catch (Exception ex) {
       throw new RuntimeException("can not read 'objects.json', cause=%s" + ex.getMessage());
+    }
+  }
+
+  public static List<Staff> getStaff() {
+    try {
+      var path = "/" + JsonUtils.class.getProtectionDomain().getCodeSource().getLocation().getPath()  + "staff.json";
+      return objectMapper.readValue(new File(path), new TypeReference<>(){});
+    } catch (Exception ex) {
+      throw new RuntimeException("can not read 'staff.json', cause=%s" + ex.getMessage());
     }
   }
 }

@@ -9,13 +9,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class GameObject {
+public class Staff {
   private String objectId;
   private String name;
   private String desc;
-  private String photoId;
-  private boolean canBeExploring;
-  private List<String> dependedObjects;
-  private List<String> secondDependedObjects;
-  private boolean fake;
+  private List<SpecialStaffDesc> specialDesc;
 }
