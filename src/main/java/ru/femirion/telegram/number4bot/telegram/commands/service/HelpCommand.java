@@ -20,9 +20,9 @@ public class HelpCommand extends ServiceCommand {
         String userName = UserUtils.getUserName(user);
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
                 "Я игровой бот. Я умею многое, но не все((\n\n " +
-                        "Вот что я могу" +
+                        "Вот что я могу\n" +
                         "регистрация /registration\n " +
-                        "ваша текущая инфомрация /info\n" +
+                        "ваша текущая информация /info\n" +
                         "исследование объектов /explore\n" +
                         "отмена текущего исследования /cancel\n" +
                         "информация об объекте /object\n" +
