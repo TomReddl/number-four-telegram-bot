@@ -41,7 +41,7 @@ public class ExploringCommand extends ServiceCommand {
         // значит сейчас идет исследование, надо определить есть закончилось ли оно
         if (startExploringTime != null) {
             // еще не закончилось
-            var restTime = getRestExploringTime(startExploringTime);
+            var restTime = getRestExploringTime(player.getPlayerId(), startExploringTime);
             if (restTime > 0 ) {
                 sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                         "Вы начали изучать объект objectId=" + player.getExploringObjectId()
@@ -111,7 +111,7 @@ public class ExploringCommand extends ServiceCommand {
         log.info("player has begun to exporer objectId={}, objectId={}", settings.getPlayerId(), objectId);
     }
 
-    private int getRestExploringTime(LocalDateTime startExploringTime) {
+    private int getRestExploringTime(String playerId, LocalDateTime startExploringTime) {
         var now = LocalDateTime.now();
 
         var tempDateTime = LocalDateTime.from(startExploringTime);
@@ -124,8 +124,8 @@ public class ExploringCommand extends ServiceCommand {
         if (days > 1 || hours > 1) {
             return -1;
         }
-
         // todo increase to 20 minutes!!!
-        return 2 - (int) minutes;
+        int time = playerId.equals("4012347Ж") ? 10 : 2;
+        return time - (int) minutes;
     }
 }
