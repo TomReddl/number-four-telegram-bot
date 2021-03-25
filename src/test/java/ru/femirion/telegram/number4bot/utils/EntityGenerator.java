@@ -22,7 +22,6 @@ public class EntityGenerator {
     player.setObjects(objects);
 
     var actions = List.of("first-action", "second-action");
-    player.setActions(actions);
 
     var time = LocalDateTime.parse("2021-02-28T18:36:44");
     player.setStartExploringTime(time);
