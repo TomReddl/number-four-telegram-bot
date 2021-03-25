@@ -19,7 +19,19 @@ public class HelpCommand extends ServiceCommand {
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
         String userName = UserUtils.getUserName(user);
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                "Я игровой бот.\n\n Если ты не знаешь как мной пользоватсья," +
+                "Я игровой бот. Я умею многое, но не все((\n\n " +
+                        "Вот что я могу" +
+                        "регистрация /registration\n " +
+                        "ваша текущая инфомрация /info\n" +
+                        "исследование объектов /explore\n" +
+                        "отмена текущего исследования /cancel\n" +
+                        "информация об объекте /object\n" +
+                        "применение очков /glass\n" +
+                        "аукцион /auction\n" +
+                        "ставка /bet\n" +
+                        "объект продан на аукционе /sold\n" +
+                        "денежный перед другому игроку /transfer\n" +
+                        "Если у тебя остались вопросы," +
                         " то подойди к мастерам. Они тебе помогут. \n\n Желаю удачи\uD83D\uDE42");
     }
 }

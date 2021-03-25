@@ -49,17 +49,17 @@ public final class Bot extends TelegramLongPollingCommandBot {
         this.BOT_NAME = botName;
         this.BOT_TOKEN = botToken;
         this.nonCommand = new NonCommand();
-        register(new HelpCommand("помощь","Помощь"));
-        register(new InfoCommand("моя-инфа", "Моя информация"));
+        register(new HelpCommand("help","Помощь"));
+        register(new InfoCommand("info", "Моя информация"));
         register(new RegisterCommand("registration", "Войти с id игрока"));
-        register(new ExploringCommand("изучить", "Изучить объект"));
-        register(new ObjectInfoCommand("объект", "Информация об объекте"));
-        register(new CancelCommand("отмена", "Отмена исследования"));
-        register(new CancelCommand("очки", "Применение очков"));
-        register(new AuctionCommand("аукцион", "Аукцион"));
-        register(new BetAuctionCommand("ставка", "Ставка на аукционе"));
-        register(new CloseAuctionCommand("продано", "Завершение аукциона"));
-        register(new MoneyTransferCommand("перевод", "Денежный перевод от игрока к игроку"));
+        register(new ExploringCommand("explore", "Изучить объект"));
+        register(new ObjectInfoCommand("object", "Информация об объекте"));
+        register(new CancelCommand("cancel", "Отмена исследования"));
+        register(new CancelCommand("glass", "Применение очков"));
+        register(new AuctionCommand("auction", "Аукцион"));
+        register(new BetAuctionCommand("bet", "Ставка на аукционе"));
+        register(new CloseAuctionCommand("sold", "Завершение аукциона"));
+        register(new MoneyTransferCommand("transfer", "Денежный перевод от игрока к игроку"));
         // TODO delete me before production!!!
         register(new TestCommand("test", "тестовая команда"));
         userSettings = new HashMap<>();
