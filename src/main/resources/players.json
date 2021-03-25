@@ -1,6 +1,7 @@
 [
   {
     "playerId": "first-player-id",
+    "password": "first-player-password",
     "name": "Дима Дмитриев",
     "desc": "Квента персонажа1",
     "objects": [
@@ -11,6 +12,7 @@
   },
   {
     "playerId": "second-player-id",
+    "password": "second-player-password",
     "name": "Коля Колянов",
     "desc": "Квента персонажа2",
     "objects": [

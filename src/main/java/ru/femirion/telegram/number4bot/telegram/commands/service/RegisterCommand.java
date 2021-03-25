@@ -22,15 +22,16 @@ public class RegisterCommand extends ServiceCommand {
         var chatId = chat.getId();
         var settings = Bot.getUserSettings().get(chatId);
 
-        if (args.length != 1) {
+        if (args.length != 2) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Команда регистрации должна содержать только идентификатор игрока." +
                             " Если у вас есть вопросы, то подойдите к мастеру.\n\n" +
-                            " Пример команды: /регистрация my-game-player-id.");
+                            " Пример команды: /регистрация my-game-player-id my-password");
             return;
         }
 
         var playerId = args[0];
+        var password = args[1];
         var playerOptional = Bot.findPlayer(playerId);
         if (playerOptional.isEmpty()) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
@@ -39,10 +40,17 @@ public class RegisterCommand extends ServiceCommand {
         }
 
         var player = playerOptional.get();
+        if (!password.equals(player.getPassword())) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                    "Вы ввели неверный логин/пароль. Проверьте ввод или подойдите к мастеру");
+            return;
+        }
+
         if (settings == null) {
             settings = new Settings(playerId);
             Bot.getUserSettings().put(chatId, settings);
         }
+
         player.setChatId(chatId);
 
         settings.setPlayerId(args[0]);
