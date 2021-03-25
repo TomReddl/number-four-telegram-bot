@@ -74,7 +74,7 @@ abstract class ServiceCommand extends BotCommand {
     void sendNotAutMessage(AbsSender absSender, Long chatId, String userName) {
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 "Вы не зарегистрированы!!! Для регистрации необходимо выполнить команду" +
-                        " /регистрация и указать ваш идентификатор игрока");
+                        " /registration и указать ваш идентификатор игрока");
     }
 
     void sendObjectNotFoundMessage(AbsSender absSender, Long chatId, String userName, String objectId) {

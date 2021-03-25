@@ -38,7 +38,7 @@ public class ObjectInfoCommand extends ServiceCommand {
         // исследования еще не было, надо начать
         if (args.length != 1) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вызовите эту команду с идентификатором объекта, например: /объект ABCD");
+                    "Вызовите эту команду с идентификатором объекта, например: /object ABCD");
             return;
         }
 
@@ -56,7 +56,7 @@ public class ObjectInfoCommand extends ServiceCommand {
             exploringSeveralObjectsHandler(object, player, absSender, chatId, userName);
         } else {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вы еще не изучили объект. Чтобы начать изучение вызовите команду /изучить " + objectId);
+                    "Вы еще не изучили объект. Чтобы начать изучение вызовите команду /explore " + objectId);
         }
     }
 }

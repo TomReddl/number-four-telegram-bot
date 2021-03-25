@@ -35,7 +35,7 @@ public class MoneyTransferCommand extends ServiceCommand {
         if (args.length != 2) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Чтобы сделать перевод нужно вызвать команду нужно указать идентификатор игрока и сумму перевода." +
-                            " Например: /перевод player-id 5000");
+                            " Например: /transfer player-id 5000");
             return;
         }
 

@@ -26,7 +26,7 @@ public class RegisterCommand extends ServiceCommand {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Команда регистрации должна содержать только идентификатор игрока." +
                             " Если у вас есть вопросы, то подойдите к мастеру.\n\n" +
-                            " Пример команды: /регистрация my-game-player-id my-password");
+                            " Пример команды: /registration my-game-player-id my-password");
             return;
         }
 
@@ -59,11 +59,9 @@ public class RegisterCommand extends ServiceCommand {
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 String.format("*Регистрация прошла успешно!*\n" +
                                 "   payerId: %s\n" +
-                                "   имя: %s\n" +
-                                "   квента: %s",
+                                "   имя: %s\n",
                         playerId,
-                        player.getName(),
-                        player.getDesc())
+                        player.getName())
         );
     }
 }

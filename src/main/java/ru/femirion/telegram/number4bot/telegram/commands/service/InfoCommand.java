@@ -50,7 +50,7 @@ public class InfoCommand extends ServiceCommand {
 
     private String getObjectCommands(List<String> objectList) {
         return objectList.stream()
-                .map(o -> "/объект " + o + "\n")
+                .map(o -> "  -" + o + "\n")
                 .collect(Collectors.joining());
     }
 }

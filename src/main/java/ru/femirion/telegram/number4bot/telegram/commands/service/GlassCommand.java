@@ -35,7 +35,7 @@ public class GlassCommand extends ServiceCommand {
 
         if (args.length != 1) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вызовите эту команду с идентификатором объекта, например: /очки ABCD");
+                    "Вызовите эту команду с идентификатором объекта, например: /glass ABCD");
             return;
         }
 

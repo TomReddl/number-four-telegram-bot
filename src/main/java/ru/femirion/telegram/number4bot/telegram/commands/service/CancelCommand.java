@@ -38,7 +38,9 @@ public class CancelCommand extends ServiceCommand {
                     "Исследование объекта=" + player.getExploringObjectId() + " отменено!");
             player.setExploringObjectId(null);
             player.setStartExploringTime(null);
+        } else {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                    "Вы сейчас не ведете исследование");
         }
-
     }
 }

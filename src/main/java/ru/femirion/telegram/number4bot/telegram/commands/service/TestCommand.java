@@ -37,10 +37,4 @@ public class TestCommand extends ServiceCommand {
                 + " auction:" + Bot.getAuction()
         );
     }
-
-    private String getObjectCommands(List<String> objectList) {
-        return objectList.stream()
-                .map(o -> "/объект " + o + "\n")
-                .collect(Collectors.joining());
-    }
 }

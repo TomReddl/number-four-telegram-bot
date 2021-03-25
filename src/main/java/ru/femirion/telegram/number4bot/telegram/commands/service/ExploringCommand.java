@@ -72,7 +72,7 @@ public class ExploringCommand extends ServiceCommand {
         // исследования еще не было, надо начать
         if (args.length != 1) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вы сейчас не изучаете объект. Чтобы начать изучение, пошлите команду /изучить с указанием идентификатора объекта");
+                    "Вы сейчас не изучаете объект. Чтобы начать изучение, пошлите команду /explore с указанием идентификатора объекта");
             return;
         }
 
@@ -94,7 +94,7 @@ public class ExploringCommand extends ServiceCommand {
         if (playerKnowThisObject) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы уже изучили объект c идентификатором=" + objectId
-                            + ". Чтобы получить информацию об объекте выполните команду /объект " + objectId);
+                            + ". Чтобы получить информацию об объекте выполните команду /object " + objectId);
             return;
         }
 
