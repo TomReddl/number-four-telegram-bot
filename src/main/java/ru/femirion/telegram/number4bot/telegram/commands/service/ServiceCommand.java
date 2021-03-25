@@ -12,10 +12,6 @@ import ru.femirion.telegram.number4bot.entity.Player;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 import ru.femirion.telegram.number4bot.utils.PhotoUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-
 @Slf4j
 abstract class ServiceCommand extends BotCommand {
     private static final String ERROR_MSG = "Ошибка %s. Команда %s. Пользователь: %s";
@@ -35,36 +31,18 @@ abstract class ServiceCommand extends BotCommand {
                     "Информация об объкте: " + object.getDesc());
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов: ");
-            var dependedObjectIds = object.getDependedObjects();
-            for (var id : dependedObjectIds) {
-                var dependedObject = Bot.findObject(id);
-                if (dependedObject.isEmpty()) {
-                    sendObjectNotFoundMessage(absSender, chatId, userName, id);
-                    return;
-                }
-                var o = dependedObject.get();
-                sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, o.getPhotoId());
-            }
+            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSuperPhotoId());
             return;
         }
         // если 2 - надо выслать порядок активации
         if (countOfDependsObject == 2) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
-//            var activationOrder = object.getActivationOrder();
-//            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации объектов: "  + activationOrder);
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации объектов: НО КОЛЯ НЕ ДАЛ МНЕ ПОРЯДОК АКТИВАЦИИ!!!!" );
+            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getActivationPhotoId());
             return;
         }
         // если 3 - надо выслать описание супер-объекта
         if (countOfDependsObject == 3) {
-//            var superObject = Bot.findObject(object.getSuperObjectId());
-//            if (superObject.isEmpty()) {
-//                sendObjectNotFoundMessage(absSender, chatId, userName, object.getSuperObjectId());
-//                return;
-//            }
-//            var o = superObject.get();
-//            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Описание эффекта при совмещении объектов: "  + o.getDesc());
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Описание эффекта при совмещении объектов: НО КОЛЯ НЕ ДАЛ МНЕ superObjectId!!!!");
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSuperObjectDesc());
         }
 
         var countOfSecondDependsObject = player.getObjects().stream()
@@ -77,36 +55,18 @@ abstract class ServiceCommand extends BotCommand {
                     "Информация об объкте: " + object.getDesc());
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов: ");
-            var dependedObjectIds = object.getSecondDependedObjects();
-            for (var id : dependedObjectIds) {
-                var dependedObject = Bot.findObject(id);
-                if (dependedObject.isEmpty()) {
-                    sendObjectNotFoundMessage(absSender, chatId, userName, id);
-                    return;
-                }
-                var o = dependedObject.get();
-                sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, o.getPhotoId());
-            }
+            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondSuperPhotoId());
             return;
         }
         // если 2 - надо выслать порядок активации
         if (countOfSecondDependsObject == 2) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
-//            var activationOrder = object.getActivationOrder();
-//            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации объектов: "  + activationOrder);
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации объектов: НО КОЛЯ НЕ ДАЛ МНЕ ПОРЯДОК АКТИВАЦИИ!!!!" );
+            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondActivationPhotoId());
             return;
         }
         // если 3 - надо выслать описание супер-объекта
         if (countOfSecondDependsObject == 3) {
-//            var superObject = Bot.findObject(object.getSuperObjectId());
-//            if (superObject.isEmpty()) {
-//                sendObjectNotFoundMessage(absSender, chatId, userName, object.getSuperObjectId());
-//                return;
-//            }
-//            var o = superObject.get();
-//            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Описание эффекта при совмещении объектов: "  + o.getDesc());
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Описание эффекта при совмещении объектов: НО КОЛЯ НЕ ДАЛ МНЕ superObjectId!!!!");
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondSuperObjectDesc());
         }
 
     }

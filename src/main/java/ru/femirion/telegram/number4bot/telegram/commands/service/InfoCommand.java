@@ -4,8 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
+import ru.femirion.telegram.number4bot.entity.GameObject;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 import ru.femirion.telegram.number4bot.telegram.Bot;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class InfoCommand extends ServiceCommand {
@@ -40,7 +44,13 @@ public class InfoCommand extends ServiceCommand {
                         settings.getPlayer().getName(),
                         settings.getPlayer().getMoney(),
                         settings.getPlayer().getExploringObjectId() == null ? settings.getPlayer().getExploringObjectId() : "---",
-                        settings.getPlayer().getObjects())
+                        getObjectCommands(settings.getPlayer().getObjects()))
         );
+    }
+
+    private String getObjectCommands(List<String> objectList) {
+        return objectList.stream()
+                .map(o -> "/объект " + o + "\n")
+                .collect(Collectors.joining());
     }
 }

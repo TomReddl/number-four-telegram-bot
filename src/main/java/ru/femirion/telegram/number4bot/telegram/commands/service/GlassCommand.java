@@ -39,6 +39,12 @@ public class GlassCommand extends ServiceCommand {
             return;
         }
 
+        if (player.getObjects().contains("")) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                    "Изучите очки перед использованием");
+            return;
+        }
+
         var objectId = args[0];
         var staffOptional = Bot.findStaff(objectId);
         if (staffOptional.isEmpty()) {
