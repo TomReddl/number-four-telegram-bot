@@ -26,7 +26,7 @@ abstract class ServiceCommand extends BotCommand {
                 .count();
 
         // если 1 - надо выслать пиктограммы
-        if (countOfDependsObject == 1) {
+        if (countOfDependsObject == 1 || countOfDependsObject == 0) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Информация об объкте: " + object.getDesc());
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
