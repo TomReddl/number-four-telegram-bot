@@ -22,15 +22,17 @@ public class CancelCommand extends ServiceCommand {
         var chatId = chat.getId();
         var settings = Bot.getUserSettings().get(chatId);
 
-        var playerId = args[0];
-        var playerOptional = Bot.findPlayer(playerId);
-        if (playerOptional.isEmpty()) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Персонаж с идентификатором=" + playerId + " не найден. Подойдите к мастеру");
+        if (settings == null) {
+            sendNotAutMessage(absSender, chatId, userName);
             return;
         }
 
-        var player = playerOptional.get();
+        var player = settings.getPlayer();
+        if (player == null) {
+            sendNotAutMessage(absSender, chatId, userName);
+            return;
+        }
+
         var startExploringTime = player.getStartExploringTime();
         // значит сейчас идет исследование, надо определить есть закончилось ли оно
         if (startExploringTime != null) {
