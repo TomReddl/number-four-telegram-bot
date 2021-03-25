@@ -45,6 +45,10 @@ abstract class ServiceCommand extends BotCommand {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSuperObjectDesc());
         }
 
+        if (object.getSecondDependedObjects() == null ) {
+            return;
+        }
+
         var countOfSecondDependsObject = player.getObjects().stream()
                 .filter(id -> object.getSecondDependedObjects().contains(id))
                 .count();
