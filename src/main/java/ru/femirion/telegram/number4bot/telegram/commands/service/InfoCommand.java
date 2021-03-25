@@ -4,9 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
-import ru.femirion.telegram.number4bot.entity.GameObject;
-import ru.femirion.telegram.number4bot.utils.UserUtils;
 import ru.femirion.telegram.number4bot.telegram.Bot;
+import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
