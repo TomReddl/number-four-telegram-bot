@@ -55,7 +55,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
         register(new ExploringCommand("explore", "Изучить объект"));
         register(new ObjectInfoCommand("object", "Информация об объекте"));
         register(new CancelCommand("cancel", "Отмена исследования"));
-        register(new CancelCommand("glass", "Применение очков"));
+        register(new GlassCommand("glass", "Применение очков"));
         register(new AuctionCommand("auction", "Аукцион"));
         register(new BetAuctionCommand("bet", "Ставка на аукционе"));
         register(new CloseAuctionCommand("sold", "Завершение аукциона"));
