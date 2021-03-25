@@ -56,6 +56,9 @@ public class BetAuctionCommand extends ServiceCommand {
 
             auction.setCurrentSum(nextStep);
             auction.setCurrentPlayerId(player.getPlayerId());
+
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                    "Вы сделали ставку " + nextStep);
         }
     }
 }

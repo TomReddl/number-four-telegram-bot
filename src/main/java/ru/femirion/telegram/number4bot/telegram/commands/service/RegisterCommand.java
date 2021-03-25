@@ -46,11 +46,12 @@ public class RegisterCommand extends ServiceCommand {
             return;
         }
 
-        if (settings != null) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вы уже зарегистрированы в системе");
-            return;
-        }
+        // TODO revert before prod
+//        if (settings != null) {
+//            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+//                    "Вы уже зарегистрированы в системе");
+//            return;
+//        }
 
 
         settings = new Settings(playerId);

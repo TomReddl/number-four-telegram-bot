@@ -34,7 +34,7 @@ public class AuctionCommand extends ServiceCommand {
             return;
         }
 
-        // хозяин аукциона должен перед идентификтор предмета, ставку и шаг для начала торгов
+        // хозяин аукциона должен перед ставку и шаг для начала торгов
         if (args.length == 2) {
             if (!player.isCanStartAuction()) {
                 sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
