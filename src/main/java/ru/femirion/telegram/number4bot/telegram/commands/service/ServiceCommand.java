@@ -53,7 +53,7 @@ abstract class ServiceCommand extends BotCommand {
                 .count();
 
         // если 1 - надо выслать пиктограммы
-        if (countOfSecondDependsObject == 1) {
+        if (countOfSecondDependsObject == 0) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Информация об объекте: " + object.getDesc());
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
@@ -62,13 +62,13 @@ abstract class ServiceCommand extends BotCommand {
             return;
         }
         // если 2 - надо выслать порядок активации
-        if (countOfSecondDependsObject == 2) {
+        if (countOfSecondDependsObject == 1) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondActivationPhotoId());
             return;
         }
         // если 3 - надо выслать описание супер-объекта
-        if (countOfSecondDependsObject == 3) {
+        if (countOfSecondDependsObject == 2) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondSuperObjectDesc());
         }
 
