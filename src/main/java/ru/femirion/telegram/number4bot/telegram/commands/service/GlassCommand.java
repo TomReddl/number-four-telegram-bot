@@ -46,21 +46,16 @@ public class GlassCommand extends ServiceCommand {
         }
 
         var objectId = args[0];
-        var staffOptional = Bot.findStaff(objectId);
-        if (staffOptional.isEmpty()) {
-            sendObjectNotFoundMessage(absSender, chatId, userName, objectId);
-            return;
-        }
-
-        if (Bot.findObject(objectId).isPresent()) {
+        var glassInfoOptional = Bot.findGlassObject(objectId);
+        if (glassInfoOptional.isEmpty()) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "К этому предмету нельзя использовать очки");
             return;
         }
 
-        var staff = staffOptional.get();
-        var specialDesc = staff.getSpecialDesc();
-        var desc = staff.getDesc();
+        var glassInfo = glassInfoOptional.get();
+        var specialDesc = glassInfo.getSpecialDesc();
+        var desc = glassInfo.getDesc();
         if (!specialDesc.isEmpty()) {
             var special = specialDesc.stream()
                     .filter(s -> s.getPlayerId().equals(player.getPlayerId()))
