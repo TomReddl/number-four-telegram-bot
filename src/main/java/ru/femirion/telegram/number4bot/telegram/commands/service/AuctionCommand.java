@@ -44,7 +44,7 @@ public class AuctionCommand extends ServiceCommand {
 
             var startFrom = Long.parseLong(args[0]);
             var step = Long.parseLong(args[1]);
-            Bot.setAuction(new Auction(player.getPlayerId(), 0, startFrom, step, player.getPlayerId()));
+            Bot.setAuction(new Auction(player.getPlayerId(), startFrom, startFrom, step, null));
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы начали аукцион. Начальная ставка=" + startFrom + ". Шаг аукциона=" + step);
             return;
@@ -59,7 +59,7 @@ public class AuctionCommand extends ServiceCommand {
         if (args.length == 0) {
             String msg = "Аукцион в самом разгаре! Текущая ставка=" + auction.getCurrentSum();
             var currentAuctionPlayerId = auction.getCurrentPlayerId();
-            if (currentAuctionPlayerId.equals(player.getPlayerId()) || player.isCanStartAuction()) {
+            if (player.getPlayerId().equals(currentAuctionPlayerId) || player.isCanStartAuction()) {
                 var currentAuctionPlayer = Bot.findPlayer(currentAuctionPlayerId);
                 if (currentAuctionPlayer.isEmpty()) {
                     sendNotAutMessage(absSender, chatId, userName);

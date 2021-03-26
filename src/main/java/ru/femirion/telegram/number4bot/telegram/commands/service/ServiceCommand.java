@@ -28,7 +28,7 @@ abstract class ServiceCommand extends BotCommand {
         // если 1 - надо выслать пиктограммы
         if (countOfDependsObject == 1 || countOfDependsObject == 0) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Информация об объкте: " + object.getDesc());
+                    "Информация об объекте: " + object.getDesc());
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSuperPhotoId());
@@ -56,7 +56,7 @@ abstract class ServiceCommand extends BotCommand {
         // если 1 - надо выслать пиктограммы
         if (countOfSecondDependsObject == 1) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Информация об объкте: " + object.getDesc());
+                    "Информация об объекте: " + object.getDesc());
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondSuperPhotoId());

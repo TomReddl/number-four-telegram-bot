@@ -6,14 +6,14 @@
     "canBeExploring": "true",
     "fake": "false",
     "photoId": "1.png",
-    "superPhotoId": "1-1.png",
+    "superPhotoId": "111.png",
     "superObjectDesc": "Якорь",
     "activationPhotoId": "1-2.png",
     "dependedObjects": ["Й410К", "Ш64Щ2", "ЗР8ЬЬ"],
     "secondDependedObjects": ["Б5М8Б", "ЯЦ9ЯС"],
     "secondSuperObjectDesc": "Источник Жизни",
-    "secondSuperPhotoId": "4-4.png",
-    "secondActivationPhotoId": "4-3.png"
+    "secondSuperPhotoId": "444.png",
+    "secondActivationPhotoId": "443.png"
   },
   {
     "objectId": "Й410К",
@@ -24,7 +24,7 @@
     "superObjectDesc": "Якорь",
     "photoId": "2.png",
     "superPhotoId": "1-1.png",
-    "activationPhotoId": "1-2.png",
+    "activationPhotoId": "112.png",
     "dependedObjects": ["АЭ13Ц", "Ш64Щ2", "ЗР8ЬЬ"]
   },
   {
@@ -60,7 +60,7 @@
     "photoId": "1111.png",
     "superObjectDesc": "Ключа Бога",
     "superPhotoId": "333333",
-    "activationPhotoId": "3-3",
+    "activationPhotoId": "333",
     "dependedObjects": ["ЯЦ9ЯС", "ЗЖ7Б1", "Ж90Ж1"]
   },
   {
@@ -72,12 +72,12 @@
     "photoId": "5.png",
     "superObjectDesc": "Ключа Бога",
     "superPhotoId": "333333",
-    "activationPhotoId": "3-3",
+    "activationPhotoId": "33",
     "dependedObjects": ["ЮБУД1", "ЗЖ7Б1", "Ж90Ж1"],
     "secondDependedObjects": ["АЭ13Ц", "Б5М8Б"],
     "secondSuperObjectDesc": "Источник Жизни",
-    "secondSuperPhotoId": "4-4.png",
-    "secondActivationPhotoId": "4-3.png"
+    "secondSuperPhotoId": "444.png",
+    "secondActivationPhotoId": "443.png"
   },
   {
     "objectId": "ЗЖ7Б1",
@@ -88,7 +88,7 @@
     "photoId": "6.png",
     "superObjectDesc": "Ключа Бога",
     "superPhotoId": "333333",
-    "activationPhotoId": "3-3",
+    "activationPhotoId": "33",
     "dependedObjects": ["ЮБУД1", "ЯЦ9ЯС", "Ж90Ж1"]
   },
   {
@@ -100,7 +100,7 @@
     "superObjectDesc": "Ключа Бога",
     "photoId": "7.png",
     "superPhotoId": "333333",
-    "activationPhotoId": "3-3",
+    "activationPhotoId": "33",
     "dependedObjects": ["ЮБУД1", "ЯЦ9ЯС", "ЗЖ7Б1"]
   },
   {
@@ -111,8 +111,8 @@
     "fake": "false",
     "superObjectDesc": "Стирание",
     "photoId": "8.png",
-    "superPhotoId": "9-1.png.png",
-    "activationPhotoId": "9-2.png",
+    "superPhotoId": "911.png",
+    "activationPhotoId": "921.png",
     "dependedObjects": ["ХВ1Д3", "Б5М8Б", "Щ9312"]
   },
   {
@@ -123,8 +123,8 @@
     "fake": "false",
     "superObjectDesc": "Стирание",
     "photoId": "15.png",
-    "superPhotoId": "9-1.png.png",
-    "activationPhotoId": "9-2.png",
+    "superPhotoId": "911.png",
+    "activationPhotoId": "921.png",
     "dependedObjects": ["013Л0", "Б5М8Б", "Щ9312"]
   },
   {
@@ -135,13 +135,13 @@
     "fake": "false",
     "photoId": "16.png",
     "superObjectDesc": "Стирание",
-    "superPhotoId": "9-1.png.png",
-    "activationPhotoId": "9-2.png",
+    "superPhotoId": "911.png",
+    "activationPhotoId": "921.png",
     "dependedObjects": ["013Л0", "ХВ1Д3", "Щ9312"],
     "secondDependedObjects": ["АЭ13Ц", "ЯЦ9ЯС"],
     "secondSuperObjectDesc": "Источник Жизни",
-    "secondSuperPhotoId": "4-4.png",
-    "secondActivationPhotoId": "4-3.png"
+    "secondSuperPhotoId": "444.png",
+    "secondActivationPhotoId": "443.png"
   },
   {
     "objectId": "Щ9312",
@@ -151,8 +151,8 @@
     "fake": "false",
     "superObjectDesc": "Стирание",
     "photoId": "17.png",
-    "superPhotoId": "9-1.png.png",
-    "activationPhotoId": "9-2.png",
+    "superPhotoId": "911.png",
+    "activationPhotoId": "921.png",
     "dependedObjects": ["013Л0", "ХВ1Д3", "Б5М8Б"]
   },
   {
