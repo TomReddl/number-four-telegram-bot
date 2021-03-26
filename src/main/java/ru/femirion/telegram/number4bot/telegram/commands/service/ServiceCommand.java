@@ -33,13 +33,11 @@ abstract class ServiceCommand extends BotCommand {
         if (countOfDependsObject == 0) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSuperPhotoId());
-            return;
         }
         // если 2 - надо выслать порядок активации
         if (countOfDependsObject == 1) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getActivationPhotoId());
-            return;
         }
         // если 3 - надо выслать описание супер-объекта
         if (countOfDependsObject == 2) {
