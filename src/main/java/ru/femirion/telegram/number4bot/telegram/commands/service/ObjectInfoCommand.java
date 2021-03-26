@@ -60,7 +60,7 @@ public class ObjectInfoCommand extends ServiceCommand {
             }
 
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вы используете очки к объекту=" + objectId + ". Доступная информация: "
+                    "Доступная информация о предмете: "
                             + desc);
             return;
         }

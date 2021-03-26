@@ -49,6 +49,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
         this.BOT_TOKEN = botToken;
         this.nonCommand = new NonCommand();
         register(new HelpCommand("help","Помощь"));
+        register(new HelpCommand("start","Помощь"));
         register(new InfoCommand("info", "Моя информация"));
         register(new RegisterCommand("registration", "Войти с id игрока"));
         register(new ExploringCommand("explore", "Изучить объект"));

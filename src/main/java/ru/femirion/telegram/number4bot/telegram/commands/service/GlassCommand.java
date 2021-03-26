@@ -39,7 +39,7 @@ public class GlassCommand extends ServiceCommand {
             return;
         }
 
-        if (player.getObjects().contains("")) {
+        if (!player.getObjects().contains("ЗР8ЬЬ")) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Изучите очки перед использованием");
             return;

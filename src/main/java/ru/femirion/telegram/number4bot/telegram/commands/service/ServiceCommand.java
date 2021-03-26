@@ -54,16 +54,13 @@ abstract class ServiceCommand extends BotCommand {
 
         // если 1 - надо выслать пиктограммы
         if (countOfSecondDependsObject == 0) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Информация об объекте: " + object.getDesc());
-            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов: ");
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов второй схемы: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondSuperPhotoId());
             return;
         }
         // если 2 - надо выслать порядок активации
         if (countOfSecondDependsObject == 1) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации второй схемы: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondActivationPhotoId());
             return;
         }
