@@ -45,6 +45,12 @@ public class CloseAuctionCommand extends ServiceCommand {
                 return;
             }
 
+            if (auction.getCurrentSum() + auction.getStep() == auction.getStartFrom()) {
+                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Аукцион отменен, покупатель не найден!");
+                Bot.setAuction(null);
+                return;
+            }
+
             var customerOptional = Bot.findPlayer(auction.getCurrentPlayerId());
             if (customerOptional.isEmpty()) {
                 sendNotAutMessage(absSender, chatId, userName);

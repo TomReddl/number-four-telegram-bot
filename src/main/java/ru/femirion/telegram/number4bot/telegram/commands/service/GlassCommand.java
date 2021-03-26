@@ -64,7 +64,9 @@ public class GlassCommand extends ServiceCommand {
         if (!specialDesc.isEmpty()) {
             var special = specialDesc.stream()
                     .filter(s -> s.getPlayerId().equals(player.getPlayerId()))
-                    .map(SpecialStaffDesc::getSpecialDesc);
+                    .map(SpecialStaffDesc::getSpecialDesc)
+                    .findAny()
+                    .orElse("");
             desc = desc + special;
         }
 

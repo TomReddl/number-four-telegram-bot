@@ -106,8 +106,11 @@ public class ExploringCommand extends ServiceCommand {
 
         player.setStartExploringTime(LocalDateTime.now());
         player.setExploringObjectId(objectId);
+
+        // todo increase to 20 minutes!!!
+        int time = player.getPlayerId().equals("4012347Ж") ? 10 : 20;
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Вы начали изучать объект с идентификатором="
-                + objectId + ". Это займет у вас 30 минут. Не забудьте обратится к боту за результатом");
+                + objectId + ". Это займет у вас " + time + " минут. Не забудьте обратится к боту за результатом");
         log.info("player has begun to exporer objectId={}, objectId={}", settings.getPlayerId(), objectId);
     }
 
