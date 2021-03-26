@@ -168,5 +168,47 @@
     "desc": "этот предмет не является объектом",
     "canBeExploring": "true",
     "fake": "true"
+  },
+  {
+    "objectId": "Й0Ц9У",
+    "name": "Пустышка",
+    "desc": "этот предмет не является объектом",
+    "canBeExploring": "false",
+    "fake": "true"
+  },
+  {
+    "objectId": "ЛУ9ОК",
+    "name": "Пустышка",
+    "desc": "этот предмет не является объектом",
+    "canBeExploring": "false",
+    "fake": "true"
+  },
+  {
+    "objectId": "Б48ВЫ",
+    "name": "Пустышка",
+    "desc": "этот предмет не является объектом",
+    "canBeExploring": "false",
+    "fake": "true"
+  },
+  {
+    "objectId": "Ы3ТТЫ",
+    "name": "Пустышка",
+    "desc": "этот предмет не является объектом",
+    "canBeExploring": "false",
+    "fake": "true"
+  },
+  {
+    "objectId": "22ДТ4",
+    "name": "Пустышка",
+    "desc": "этот предмет не является объектом",
+    "canBeExploring": "false",
+    "fake": "true"
+  },
+  {
+    "objectId": "Х2383",
+    "name": "Пустышка",
+    "desc": "этот предмет не является объектом",
+    "canBeExploring": "false",
+    "fake": "true"
   }
 ]
