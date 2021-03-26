@@ -42,14 +42,22 @@ public class InfoCommand extends ServiceCommand {
                         settings.getPlayerId(),
                         settings.getPlayer().getName(),
                         settings.getPlayer().getMoney(),
-                        settings.getPlayer().getExploringObjectId() == null ? settings.getPlayer().getExploringObjectId() : "---",
+                        settings.getPlayer().getExploringObjectId() == null
+                                ?  "в данный момент Вы не изучаете объект" : settings.getPlayer().getExploringObjectId(),
                         getObjectCommands(settings.getPlayer().getObjects()))
         );
     }
 
     private String getObjectCommands(List<String> objectList) {
         return objectList.stream()
-                .map(o -> "  " + o + "\n")
+                .map(o -> {
+                    var opt = Bot.findObject(o);
+                    if (opt.isPresent()) {
+                        var object = opt.get();
+                        return  object.getName() + " (" + object.getObjectId() + ")\n";
+                    }
+                    return "";
+                })
                 .collect(Collectors.joining());
     }
 }
