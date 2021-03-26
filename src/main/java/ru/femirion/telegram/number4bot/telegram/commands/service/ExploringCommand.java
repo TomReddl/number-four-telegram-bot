@@ -43,7 +43,7 @@ public class ExploringCommand extends ServiceCommand {
             if (restTime > 0 ) {
                 sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                         "Вы начали изучать объект objectId=" + player.getExploringObjectId()
-                                + ". Осталось всего " + restTime + " минут(ы). Не забудьте обратится к боту за результатом");
+                                + ". Осталось всего " + restTime + " минут(ы). Не забудьте обратиться к боту за результатом");
             } else {
                 // закончилось
                 var objectOptional = Bot.findObject(player.getExploringObjectId());
@@ -108,7 +108,7 @@ public class ExploringCommand extends ServiceCommand {
         // todo increase to 20 minutes!!!
         int time = player.getPlayerId().equals("4012347Ж") ? 10 : 20;
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Вы начали изучать объект с идентификатором="
-                + objectId + ". Это займет у вас " + time + " минут. Не забудьте обратится к боту за результатом");
+                + objectId + ". Это займет у вас " + time + " минут. Не забудьте обратиться к боту за результатом");
         log.info("player has begun to exporer objectId={}, objectId={}", settings.getPlayerId(), objectId);
     }
 
