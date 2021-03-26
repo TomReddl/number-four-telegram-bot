@@ -107,7 +107,7 @@ public class ExploringCommand extends ServiceCommand {
         player.setStartExploringTime(LocalDateTime.now());
         player.setExploringObjectId(objectId);
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Вы начали изучать объект с идентификатором="
-                + objectId + ". Это займет у вас 30 минут. Не забудьте обратится к боту за результатом");
+                + objectId + ". Это займет у вас 20 минут. Не забудьте обратиться к боту за результатом");
         log.info("player has begun to exporer objectId={}, objectId={}", settings.getPlayerId(), objectId);
     }
 
