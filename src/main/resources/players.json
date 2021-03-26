@@ -15,7 +15,7 @@
     "password": "33Л7",
     "name": "Анастасия Шохина",
     "desc": "",
-    "objects": [
+    "objects": ["ЮБУД1"
     ],
     "money": 55000,
     "canStartAuction": "false"
@@ -25,7 +25,7 @@
     "password": "85Й6",
     "name": "Макар Рубинштейн",
     "desc": "",
-    "objects": [
+    "objects": ["ЗР3РЦ"
     ],
     "money": 7000,
     "canStartAuction": "false"
@@ -55,7 +55,7 @@
     "password": "615В",
     "name": "Алексей Фролов",
     "desc": "",
-    "objects": [
+    "objects": ["АЭ13Ц"
     ],
     "money": 18000,
     "canStartAuction": "false"
@@ -65,7 +65,7 @@
     "password": "3Г45",
     "name": "Анна Кошкина",
     "desc": "",
-    "objects": [
+    "objects": ["Ш64Щ2", "013Л0"
     ],
     "money": 48000,
     "canStartAuction": "false"
@@ -75,7 +75,7 @@
     "password": "22Ц9",
     "name": "Фёдор Коржиков",
     "desc": "",
-    "objects": [
+    "objects": ["ЗЖ7Б1"
     ],
     "money": 10000,
     "canStartAuction": "true"
@@ -85,7 +85,7 @@
     "password": "Б040",
     "name": "Александр Смольный",
     "desc": "",
-    "objects": [
+    "objects": ["Щ9312"
     ],
     "money": 20000,
     "canStartAuction": "false"
