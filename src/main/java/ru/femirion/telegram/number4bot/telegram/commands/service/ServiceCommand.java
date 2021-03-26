@@ -30,19 +30,19 @@ abstract class ServiceCommand extends BotCommand {
         sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
 
         // если 1 - надо выслать пиктограммы
-        if (countOfDependsObject == 1 || countOfDependsObject == 0) {
+        if (countOfDependsObject == 0) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSuperPhotoId());
             return;
         }
         // если 2 - надо выслать порядок активации
-        if (countOfDependsObject == 2) {
+        if (countOfDependsObject == 1) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getActivationPhotoId());
             return;
         }
         // если 3 - надо выслать описание супер-объекта
-        if (countOfDependsObject == 3) {
+        if (countOfDependsObject == 2) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSuperObjectDesc());
         }
 
