@@ -39,9 +39,11 @@ abstract class ServiceCommand extends BotCommand {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getActivationPhotoId());
         }
-        // если 2 - надо выслать описание супер-объекта
-        if (countOfDependsObject == 2) {
+        // если 2 или 3 - надо выслать описание супер-объекта
+        if (countOfDependsObject == 2 || countOfDependsObject == 3) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSuperObjectDesc());
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
+            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getActivationPhotoId());
         }
 
         if (object.getSecondDependedObjects() == null ) {
@@ -65,8 +67,10 @@ abstract class ServiceCommand extends BotCommand {
             return;
         }
         // если 2 - надо выслать описание супер-объекта
-        if (countOfSecondDependsObject == 2) {
+        if (countOfSecondDependsObject == 2 || countOfSecondDependsObject == 3) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondSuperObjectDesc());
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
+            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondActivationPhotoId());
         }
 
     }
