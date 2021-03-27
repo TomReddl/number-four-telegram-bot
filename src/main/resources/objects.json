@@ -210,5 +210,12 @@
     "desc": "этот предмет не является объектом",
     "canBeExploring": "false",
     "fake": "true"
+  },
+  {
+    "objectId": "КЛК77",
+    "name": "Ключ",
+    "desc": "Позволяет открыть дверь в Пропавшую Комнату.",
+    "canBeExploring": "true",
+    "fake": "false"
   }
 ]
