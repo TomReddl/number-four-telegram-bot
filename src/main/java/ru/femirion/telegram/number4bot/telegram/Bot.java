@@ -85,8 +85,33 @@ public final class Bot extends TelegramLongPollingCommandBot {
         Long chatId = msg.getChatId();
         String userName = UserUtils.getUserName(msg);
 
-        String answer = nonCommand.nonCommandExecute(chatId, userName, msg.getText());
-        sendToPlayer(chatId, userName, answer);
+        if (!sendObjectInfoAnswer(chatId, userName, msg.getText())) {
+            String answer = nonCommand.nonCommandExecute(chatId, userName, msg.getText());
+            sendToPlayer(chatId, userName, answer);
+        }
+    }
+
+    private Boolean sendObjectInfoAnswer (Long chatId, String userName, String objectId) {
+        var staffOpt = Bot.findStaff(objectId);
+        if (staffOpt.isPresent()) {
+            var staff = staffOpt.get();
+            var specialDesc = staff.getSpecialDesc();
+            var desc = staff.getDesc();
+            if (!specialDesc.isEmpty()) {
+                var special = specialDesc.stream()
+                        .filter(s -> s.getPlayerId().equals(player.getPlayerId()))
+                        .map(SpecialStaffDesc::getSpecialDesc)
+                        .findAny()
+                        .orElse("");
+                desc = desc + special;
+            }
+
+            sendToPlayer(chatId, this.getCommandIdentifier(), userName,
+                    "Доступная информация о предмете: "
+                            + desc);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 
     public static Optional<Player> findPlayer(String playerId) {

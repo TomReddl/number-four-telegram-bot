@@ -54,7 +54,7 @@ public class InfoCommand extends ServiceCommand {
                     var opt = Bot.findObject(o);
                     if (opt.isPresent()) {
                         var object = opt.get();
-                        return  object.getName() + " (" + object.getObjectId() + ")\n";
+                        return  object.getName() + " (/" + object.getObjectId() + ")\n";
                     }
                     return "";
                 })
