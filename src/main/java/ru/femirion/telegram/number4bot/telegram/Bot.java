@@ -106,8 +106,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
                 desc = desc + special;
             }
 
-            sendToPlayer(chatId, this.getCommandIdentifier(), userName,
-                    "Доступная информация о предмете: "
+            sendToPlayer(chatId, userName,"Доступная информация о предмете: "
                             + desc);
             return Boolean.TRUE;
         }
