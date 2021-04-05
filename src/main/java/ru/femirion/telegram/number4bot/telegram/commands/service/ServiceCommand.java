@@ -25,24 +25,25 @@ abstract class ServiceCommand extends BotCommand {
                 .filter(id -> object.getDependedObjects().contains(id))
                 .count();
 
-        // если 1 - надо выслать пиктограммы
-        if (countOfDependsObject == 1 || countOfDependsObject == 0) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Информация об объкте: " + object.getDesc());
-            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
+        sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                "Информация об объекте: " + object.getDesc());
+        sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
+
+        // если 0 - надо выслать пиктограммы
+        if (countOfDependsObject == 0) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSuperPhotoId());
-            return;
         }
-        // если 2 - надо выслать порядок активации
-        if (countOfDependsObject == 2) {
+        // если 1 - надо выслать порядок активации
+        if (countOfDependsObject == 1) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getActivationPhotoId());
-            return;
         }
-        // если 3 - надо выслать описание супер-объекта
-        if (countOfDependsObject == 3) {
+        // если 2 или 3 - надо выслать описание супер-объекта
+        if (countOfDependsObject == 2 || countOfDependsObject == 3) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSuperObjectDesc());
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
+            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getActivationPhotoId());
         }
 
         if (object.getSecondDependedObjects() == null ) {
@@ -53,24 +54,23 @@ abstract class ServiceCommand extends BotCommand {
                 .filter(id -> object.getSecondDependedObjects().contains(id))
                 .count();
 
-        // если 1 - надо выслать пиктограммы
-        if (countOfSecondDependsObject == 1) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Информация об объкте: " + object.getDesc());
-            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getPhotoId());
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов: ");
+        // если 0 - надо выслать пиктограммы
+        if (countOfSecondDependsObject == 0) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Пиктограммы связанных объектов второй схемы: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondSuperPhotoId());
             return;
         }
-        // если 2 - надо выслать порядок активации
-        if (countOfSecondDependsObject == 2) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
+        // если 1 - надо выслать порядок активации
+        if (countOfSecondDependsObject == 1) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации второй схемы: ");
             sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondActivationPhotoId());
             return;
         }
-        // если 3 - надо выслать описание супер-объекта
-        if (countOfSecondDependsObject == 3) {
+        // если 2 - надо выслать описание супер-объекта
+        if (countOfSecondDependsObject == 2 || countOfSecondDependsObject == 3) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondSuperObjectDesc());
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Порядок активации: ");
+            sendPhotoAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getSecondActivationPhotoId());
         }
 
     }

@@ -4,8 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
-import ru.femirion.telegram.number4bot.entity.GameObject;
-import ru.femirion.telegram.number4bot.entity.Player;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
@@ -45,8 +43,9 @@ public class ExploringCommand extends ServiceCommand {
             if (restTime > 0 ) {
                 sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                         "Вы начали изучать объект objectId=" + player.getExploringObjectId()
-                                + ". Осталось всего " + restTime + " минут(ы). Не забудьте обратится к боту за результатом");
+                                + ". Осталось всего " + restTime + " минут(ы). Не забудьте обратиться к боту за результатом");
             } else {
+
                 // закончилось
                 var objectOptional = Bot.findObject(player.getExploringObjectId());
                 // по какой-то причине объект не найден. Такого быть не должно, но обработаем всеравно!
@@ -58,6 +57,14 @@ public class ExploringCommand extends ServiceCommand {
                     return;
                 }
                 var object = objectOptional.get();
+                // если объект пустышка
+                if (object.isFake()) {
+                    sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getDesc());
+                    player.setExploringObjectId(null);
+                    player.setStartExploringTime(null);
+                    return;
+                }
+
                 sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                         "Вы изучили объект идентификатором=" + player.getExploringObjectId());
                 player.setExploringObjectId(null);
@@ -85,8 +92,7 @@ public class ExploringCommand extends ServiceCommand {
 
         var object = objectOptional.get();
         if (!object.isCanBeExploring()) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Этот объект нельзя изучить. Описание объекта: " + object.getDesc());
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getDesc());
             return;
         }
 
@@ -98,16 +104,12 @@ public class ExploringCommand extends ServiceCommand {
             return;
         }
 
-        // если объект пустышка
-        if (object.isFake()) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getDesc());
-            return;
-        }
-
         player.setStartExploringTime(LocalDateTime.now());
         player.setExploringObjectId(objectId);
+
+        int time = player.getPlayerId().equals("пв60") ? 10 : 20;
         sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Вы начали изучать объект с идентификатором="
-                + objectId + ". Это займет у вас 30 минут. Не забудьте обратится к боту за результатом");
+                + objectId + ". Это займет у вас " + time + " минут. Не забудьте обратиться к боту за результатом");
         log.info("player has begun to exporer objectId={}, objectId={}", settings.getPlayerId(), objectId);
     }
 
@@ -125,7 +127,7 @@ public class ExploringCommand extends ServiceCommand {
             return -1;
         }
         // todo increase to 20 minutes!!!
-        int time = playerId.equals("4012347Ж") ? 10 : 2;
+        int time = playerId.equals("пв60") ? 10 : 2;
         return time - (int) minutes;
     }
 }

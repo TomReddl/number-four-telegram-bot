@@ -39,32 +39,29 @@ public class GlassCommand extends ServiceCommand {
             return;
         }
 
-        if (player.getObjects().contains("")) {
+        if (!player.getObjects().contains("ЗР8ЬЬ")) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Изучите очки перед использованием");
             return;
         }
 
         var objectId = args[0];
-        var staffOptional = Bot.findStaff(objectId);
-        if (staffOptional.isEmpty()) {
-            sendObjectNotFoundMessage(absSender, chatId, userName, objectId);
-            return;
-        }
-
-        if (Bot.findObject(objectId).isPresent()) {
+        var glassInfoOptional = Bot.findGlassObject(objectId);
+        if (glassInfoOptional.isEmpty()) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "К этому предмету нельзя использовать очки");
             return;
         }
 
-        var staff = staffOptional.get();
-        var specialDesc = staff.getSpecialDesc();
-        var desc = staff.getDesc();
+        var glassInfo = glassInfoOptional.get();
+        var specialDesc = glassInfo.getSpecialDesc();
+        var desc = glassInfo.getDesc();
         if (!specialDesc.isEmpty()) {
             var special = specialDesc.stream()
                     .filter(s -> s.getPlayerId().equals(player.getPlayerId()))
-                    .map(SpecialStaffDesc::getSpecialDesc);
+                    .map(SpecialStaffDesc::getSpecialDesc)
+                    .findAny()
+                    .orElse("");
             desc = desc + special;
         }
 

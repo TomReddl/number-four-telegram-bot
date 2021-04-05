@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
+import ru.femirion.telegram.number4bot.entity.SpecialStaffDesc;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
@@ -43,6 +44,27 @@ public class ObjectInfoCommand extends ServiceCommand {
         }
 
         var objectId = args[0];
+
+        var staffOpt = Bot.findStaff(objectId);
+        if (staffOpt.isPresent()) {
+            var staff = staffOpt.get();
+            var specialDesc = staff.getSpecialDesc();
+            var desc = staff.getDesc();
+            if (!specialDesc.isEmpty()) {
+                var special = specialDesc.stream()
+                        .filter(s -> s.getPlayerId().equals(player.getPlayerId()))
+                        .map(SpecialStaffDesc::getSpecialDesc)
+                        .findAny()
+                        .orElse("");
+                desc = desc + special;
+            }
+
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                    "Доступная информация о предмете: "
+                            + desc);
+            return;
+        }
+
         var objectOptional = Bot.findObject(objectId);
         if (objectOptional.isEmpty()) {
             sendObjectNotFoundMessage(absSender, chatId, userName, objectId);

@@ -34,6 +34,12 @@ public class AuctionCommand extends ServiceCommand {
             return;
         }
 
+        if (args.length != 0 && args.length != 2) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                    "Неверное количество аргументов у команды. Обратитесь за помощью к мастеру");
+            return;
+        }
+
         // хозяин аукциона должен перед ставку и шаг для начала торгов
         if (args.length == 2) {
             if (!player.isCanStartAuction()) {
@@ -44,7 +50,7 @@ public class AuctionCommand extends ServiceCommand {
 
             var startFrom = Long.parseLong(args[0]);
             var step = Long.parseLong(args[1]);
-            Bot.setAuction(new Auction(player.getPlayerId(), 0, startFrom, step, player.getPlayerId()));
+            Bot.setAuction(new Auction(player.getPlayerId(), startFrom - step, startFrom, step, null));
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы начали аукцион. Начальная ставка=" + startFrom + ". Шаг аукциона=" + step);
             return;
@@ -56,18 +62,26 @@ public class AuctionCommand extends ServiceCommand {
             return;
         }
 
-        if (args.length == 0) {
-            String msg = "Аукцион в самом разгаре! Текущая ставка=" + auction.getCurrentSum();
-            var currentAuctionPlayerId = auction.getCurrentPlayerId();
-            if (currentAuctionPlayerId.equals(player.getPlayerId()) || player.isCanStartAuction()) {
-                var currentAuctionPlayer = Bot.findPlayer(currentAuctionPlayerId);
-                if (currentAuctionPlayer.isEmpty()) {
-                    sendNotAutMessage(absSender, chatId, userName);
-                    return;
-                }
-                msg = msg + ". владелец ставки:" + currentAuctionPlayer.get().getName();
-            }
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, msg);
+
+        if (auction.getCurrentSum() + auction.getStep() == auction.getStartFrom()) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                    "Пока что не поступило ни одной ставки, начальная ставка " + auction.getStartFrom()
+                            + " чтобы сделать ставку вызовите команду /bet");
+            Bot.setAuction(null);
+            return;
         }
+
+        String msg = "Аукцион в самом разгаре! Текущая ставка=" + auction.getCurrentSum();
+        var currentAuctionPlayerId = auction.getCurrentPlayerId();
+        if (player.getPlayerId().equals(currentAuctionPlayerId) || player.isCanStartAuction()) {
+            var currentAuctionPlayer = Bot.findPlayer(currentAuctionPlayerId);
+            if (currentAuctionPlayer.isEmpty()) {
+                sendNotAutMessage(absSender, chatId, userName);
+                return;
+            }
+            msg = msg + ". владелец ставки:" + currentAuctionPlayer.get().getName();
+        }
+        sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, msg);
+
     }
 }

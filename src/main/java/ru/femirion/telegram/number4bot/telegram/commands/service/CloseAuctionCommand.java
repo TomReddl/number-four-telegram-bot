@@ -45,6 +45,12 @@ public class CloseAuctionCommand extends ServiceCommand {
                 return;
             }
 
+            if (auction.getCurrentSum() + auction.getStep() == auction.getStartFrom()) {
+                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Аукцион отменен, покупатель не найден!");
+                Bot.setAuction(null);
+                return;
+            }
+
             var customerOptional = Bot.findPlayer(auction.getCurrentPlayerId());
             if (customerOptional.isEmpty()) {
                 sendNotAutMessage(absSender, chatId, userName);
@@ -52,8 +58,8 @@ public class CloseAuctionCommand extends ServiceCommand {
             }
 
             var customer = customerOptional.get();
+            customer.setMoney(customer.getMoney() - auction.getCurrentSum());
             player.setMoney(player.getMoney() + auction.getCurrentSum());
-            customer.setMoney(player.getMoney() - auction.getCurrentSum());
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Аукцион закончен. Товар продан игроку=" + customer.getName() + " за " + auction.getCurrentSum());
 
