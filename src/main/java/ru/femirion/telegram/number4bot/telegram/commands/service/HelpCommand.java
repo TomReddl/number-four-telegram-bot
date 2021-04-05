@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 /**
@@ -18,7 +19,7 @@ public class HelpCommand extends ServiceCommand {
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
         String userName = UserUtils.getUserName(user);
-        sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
+        SendUtils.sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
                 "Я игровой бот. Я умею многое, но не все((\n\n " +
                         "Вот что я могу\n" +
                         "регистрация /registration\n " +

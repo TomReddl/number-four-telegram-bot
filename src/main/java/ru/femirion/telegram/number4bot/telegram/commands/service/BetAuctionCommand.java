@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.telegram.Bot;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 @Slf4j
@@ -35,12 +36,12 @@ public class BetAuctionCommand extends ServiceCommand {
 
             var auction = Bot.getAuction();
             if (auction == null) {
-                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Аукцион еще не начался!");
+                SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Аукцион еще не начался!");
                 return;
             }
 
             if (player.isCanStartAuction()) {
-                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                         "Вы не имеет права участвовать в аукционе лично.");
                 return;
             }
@@ -48,7 +49,7 @@ public class BetAuctionCommand extends ServiceCommand {
             var step = auction.getStep();
             var nextStep = step + auction.getCurrentSum();
             if (player.getMoney() < nextStep) {
-                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                         "У вас не хватает денег чтобы участвовать в акуционе. Сейчас на вашем счету=" + player.getMoney()
                                 + ", для ставки нужно минимум " + nextStep);
                 return;
@@ -57,7 +58,7 @@ public class BetAuctionCommand extends ServiceCommand {
             auction.setCurrentSum(nextStep);
             auction.setCurrentPlayerId(player.getPlayerId());
 
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы сделали ставку " + nextStep);
         }
     }

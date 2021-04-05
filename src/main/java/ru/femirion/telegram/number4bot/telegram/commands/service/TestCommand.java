@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.telegram.Bot;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class TestCommand extends ServiceCommand {
             return;
         }
 
-        sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+        SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 "bot data:" + Bot.getUserSettings() + "\n\n"
                 + " auction:" + Bot.getAuction()
         );

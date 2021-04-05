@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.telegram.Bot;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 @Slf4j
@@ -33,7 +34,7 @@ public class MoneyTransferCommand extends ServiceCommand {
         }
 
         if (args.length != 2) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Чтобы сделать перевод нужно вызвать команду нужно указать идентификатор игрока и сумму перевода." +
                             " Например: /transfer player-id 5000");
             return;
@@ -42,7 +43,7 @@ public class MoneyTransferCommand extends ServiceCommand {
         var anotherPlayerId = args[0];
         var anotherPlayerOpt = Bot.findPlayer(anotherPlayerId);
         if (anotherPlayerOpt.isEmpty()) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Игрок с таким идентификатором не найден");
             return;
         }
@@ -50,11 +51,11 @@ public class MoneyTransferCommand extends ServiceCommand {
         var anotherPlayer = anotherPlayerOpt.get();
         var count = Long.parseLong(args[1]);
         if (player.getMoney() <= 0) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы не можете перевести сумму меньше 0");
             return;
         } else if (player.getMoney() < count) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "На вашем счету недостаточно денег. У вас всего " + player.getMoney() + ", а вы хотите перевести " + count);
             return;
         }
@@ -62,7 +63,7 @@ public class MoneyTransferCommand extends ServiceCommand {
         anotherPlayer.setMoney(anotherPlayer.getMoney() + count);
         player.setMoney(player.getMoney() - count);
 
-        sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+        SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 "Перевод игроку " + anotherPlayer.getName() + " совершен успешно!");
     }
 }

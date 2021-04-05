@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.entity.SpecialStaffDesc;
 import ru.femirion.telegram.number4bot.telegram.Bot;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 @Slf4j
@@ -34,13 +35,13 @@ public class GlassCommand extends ServiceCommand {
         }
 
         if (args.length != 1) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вызовите эту команду с идентификатором объекта, например: /glass ABCD");
             return;
         }
 
         if (!player.getObjects().contains("ЗР8ЬЬ")) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Изучите очки перед использованием");
             return;
         }
@@ -48,7 +49,7 @@ public class GlassCommand extends ServiceCommand {
         var objectId = args[0];
         var glassInfoOptional = Bot.findGlassObject(objectId);
         if (glassInfoOptional.isEmpty()) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "К этому предмету нельзя использовать очки");
             return;
         }
@@ -65,7 +66,7 @@ public class GlassCommand extends ServiceCommand {
             desc = desc + special;
         }
 
-        sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+        SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 "Вы используете очки к объекту=" + objectId + ". Доступная информация: "
                         + desc);
     }

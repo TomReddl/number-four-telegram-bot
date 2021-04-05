@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.telegram.Bot;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 import java.time.LocalDateTime;
@@ -45,7 +46,7 @@ public class ExploringCommand extends ServiceCommand {
             // еще не закончилось
             var restTime = getRestExploringTime(player.getPlayerId(), startExploringTime);
             if (restTime > 0 ) {
-                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                         "Вы начали изучать объект objectId=" + player.getExploringObjectId()
                                 + ". Осталось всего " + restTime + " минут(ы). Не забудьте обратиться к боту за результатом");
             } else {
@@ -63,13 +64,13 @@ public class ExploringCommand extends ServiceCommand {
                 var object = objectOptional.get();
                 // если объект пустышка
                 if (object.isFake()) {
-                    sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getDesc());
+                    SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getDesc());
                     player.setExploringObjectId(null);
                     player.setStartExploringTime(null);
                     return;
                 }
 
-                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                         "Вы изучили объект идентификатором=" + player.getExploringObjectId());
                 player.setExploringObjectId(null);
                 player.setStartExploringTime(null);
@@ -82,7 +83,7 @@ public class ExploringCommand extends ServiceCommand {
 
         // исследования еще не было, надо начать
         if (args.length != 1) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы сейчас не изучаете объект. Чтобы начать изучение, пошлите команду /explore с указанием идентификатора объекта");
             return;
         }
@@ -96,13 +97,13 @@ public class ExploringCommand extends ServiceCommand {
 
         var object = objectOptional.get();
         if (!object.isCanBeExploring()) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getDesc());
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, object.getDesc());
             return;
         }
 
         boolean playerKnowThisObject = player.getObjects().stream().anyMatch(objectId::equals);
         if (playerKnowThisObject) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы уже изучили объект c идентификатором=" + objectId
                             + ". Чтобы получить информацию об объекте выполните команду /object " + objectId);
             return;
@@ -112,7 +113,7 @@ public class ExploringCommand extends ServiceCommand {
         player.setExploringObjectId(objectId);
 
         int time = player.getPlayerId().equals(fastExploringId) ? fastExploringTime : exploringTime;
-        sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Вы начали изучать объект с идентификатором="
+        SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Вы начали изучать объект с идентификатором="
                 + objectId + ". Это займет у вас " + time + " минут. Не забудьте обратиться к боту за результатом");
         log.info("player has begun to exporer objectId={}, objectId={}", settings.getPlayerId(), objectId);
     }

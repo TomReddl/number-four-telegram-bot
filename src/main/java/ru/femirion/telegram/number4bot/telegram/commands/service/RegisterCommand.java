@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 import ru.femirion.telegram.number4bot.telegram.nonCommand.Settings;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 @Slf4j
@@ -23,7 +24,7 @@ public class RegisterCommand extends ServiceCommand {
         var settings = Bot.getUserSettings().get(chatId);
 
         if (args.length != 2) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Команда регистрации должна содержать только идентификатор игрока." +
                             " Если у вас есть вопросы, то подойдите к мастеру.\n\n" +
                             " Пример команды: /registration my-game-player-id my-password");
@@ -34,14 +35,14 @@ public class RegisterCommand extends ServiceCommand {
         var password = args[1];
         var playerOptional = Bot.findPlayer(playerId);
         if (playerOptional.isEmpty()) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Персонаж с идентификатором=" + playerId + " не найден. Подойдите к мастеру");
             return;
         }
 
         var player = playerOptional.get();
         if (!password.equals(player.getPassword())) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы ввели неверный логин/пароль. Проверьте ввод или подойдите к мастеру");
             return;
         }
@@ -63,7 +64,7 @@ public class RegisterCommand extends ServiceCommand {
         settings.setPlayerId(args[0]);
         settings.setPlayer(player);
 
-        sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+        SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 String.format("*Регистрация прошла успешно!*\n" +
                                 "   payerId: %s\n" +
                                 "   имя: %s\n",

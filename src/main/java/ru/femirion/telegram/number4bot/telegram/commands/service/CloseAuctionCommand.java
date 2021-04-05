@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.telegram.Bot;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 @Slf4j
@@ -35,18 +36,18 @@ public class CloseAuctionCommand extends ServiceCommand {
 
             var auction = Bot.getAuction();
             if (auction == null) {
-                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Аукцион еще не начался!");
+                SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Аукцион еще не начался!");
                 return;
             }
 
             if (!player.isCanStartAuction()) {
-                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                         "Вы не имеет права завершеть аукцион.");
                 return;
             }
 
             if (auction.getCurrentSum() + auction.getStep() == auction.getStartFrom()) {
-                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Аукцион отменен, покупатель не найден!");
+                SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Аукцион отменен, покупатель не найден!");
                 Bot.setAuction(null);
                 return;
             }
@@ -60,7 +61,7 @@ public class CloseAuctionCommand extends ServiceCommand {
             var customer = customerOptional.get();
             customer.setMoney(customer.getMoney() - auction.getCurrentSum());
             player.setMoney(player.getMoney() + auction.getCurrentSum());
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Аукцион закончен. Товар продан игроку=" + customer.getName() + " за " + auction.getCurrentSum());
 
             Bot.setAuction(null);

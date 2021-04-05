@@ -7,6 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.entity.Auction;
 import ru.femirion.telegram.number4bot.telegram.Bot;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 @Slf4j
@@ -35,7 +36,7 @@ public class AuctionCommand extends ServiceCommand {
         }
 
         if (args.length != 0 && args.length != 2) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Неверное количество аргументов у команды. Обратитесь за помощью к мастеру");
             return;
         }
@@ -43,7 +44,7 @@ public class AuctionCommand extends ServiceCommand {
         // хозяин аукциона должен перед ставку и шаг для начала торгов
         if (args.length == 2) {
             if (!player.isCanStartAuction()) {
-                sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                         "Вы не имеет прав начинать аукцион.");
                 return;
             }
@@ -51,20 +52,20 @@ public class AuctionCommand extends ServiceCommand {
             var startFrom = Long.parseLong(args[0]);
             var step = Long.parseLong(args[1]);
             Bot.setAuction(new Auction(player.getPlayerId(), startFrom - step, startFrom, step, null));
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы начали аукцион. Начальная ставка=" + startFrom + ". Шаг аукциона=" + step);
             return;
         }
 
         var auction = Bot.getAuction();
         if (auction == null) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Аукцион еще не начался!");
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Аукцион еще не начался!");
             return;
         }
 
 
         if (auction.getCurrentSum() + auction.getStep() == auction.getStartFrom()) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Пока что не поступило ни одной ставки, начальная ставка " + auction.getStartFrom()
                             + " чтобы сделать ставку вызовите команду /bet");
             Bot.setAuction(null);
@@ -81,7 +82,7 @@ public class AuctionCommand extends ServiceCommand {
             }
             msg = msg + ". владелец ставки:" + currentAuctionPlayer.get().getName();
         }
-        sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, msg);
+        SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, msg);
 
     }
 }

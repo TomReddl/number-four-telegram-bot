@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 import ru.femirion.telegram.number4bot.telegram.nonCommand.Settings;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 
 @Slf4j
@@ -36,12 +37,12 @@ public class CancelCommand extends ServiceCommand {
         var startExploringTime = player.getStartExploringTime();
         // значит сейчас идет исследование, надо определить есть закончилось ли оно
         if (startExploringTime != null) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Исследование объекта=" + player.getExploringObjectId() + " отменено!");
             player.setExploringObjectId(null);
             player.setStartExploringTime(null);
         } else {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы сейчас не ведете исследование");
         }
     }
