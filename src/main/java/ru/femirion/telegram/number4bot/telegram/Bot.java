@@ -84,14 +84,15 @@ public final class Bot extends TelegramLongPollingCommandBot {
         Message msg = update.getMessage();
         Long chatId = msg.getChatId();
         String userName = UserUtils.getUserName(msg);
+        var settings = Bot.getUserSettings().get(chatId);
 
-        if (!sendObjectInfoAnswer(chatId, userName, msg.getText())) {
+        if (!sendObjectInfoAnswer(chatId, userName, msg.getText(), settings.getPlayer().getPlayerId())) {
             String answer = nonCommand.nonCommandExecute(chatId, userName, msg.getText());
             sendToPlayer(chatId, userName, answer);
         }
     }
 
-    private Boolean sendObjectInfoAnswer (Long chatId, String userName, String objectId) {
+    private Boolean sendObjectInfoAnswer (Long chatId, String userName, String objectId, String playerId) {
         var staffOpt = Bot.findStaff(objectId);
         if (staffOpt.isPresent()) {
             var staff = staffOpt.get();
@@ -99,7 +100,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
             var desc = staff.getDesc();
             if (!specialDesc.isEmpty()) {
                 var special = specialDesc.stream()
-                        .filter(s -> s.getPlayerId().equals(player.getPlayerId()))
+                        .filter(s -> s.getPlayerId().equals(playerId))
                         .map(SpecialStaffDesc::getSpecialDesc)
                         .findAny()
                         .orElse("");
