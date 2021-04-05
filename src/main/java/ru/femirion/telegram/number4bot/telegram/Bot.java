@@ -86,8 +86,8 @@ public final class Bot extends TelegramLongPollingCommandBot {
         String userName = UserUtils.getUserName(msg);
         var settings = Bot.getUserSettings().get(chatId);
 
-        sendToPlayer(chatId, userName,msg.getText());
-        if (!sendObjectInfoAnswer(chatId, userName, msg.getText(), settings.getPlayer().getPlayerId())) {
+        if (!sendObjectInfoAnswer(chatId, userName, msg.getText().replaceAll("/", ""),
+                settings.getPlayer().getPlayerId())) {
             String answer = nonCommand.nonCommandExecute(chatId, userName, msg.getText());
             sendToPlayer(chatId, userName, answer);
         }
