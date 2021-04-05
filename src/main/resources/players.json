@@ -1,6 +1,6 @@
 [
   {
-    "playerId": "пв60",
+    "playerId": "pv60",
     "password": "1845",
     "name": "Пётр Вербитский",
     "desc": "",
@@ -11,7 +11,7 @@
     "canStartAuction": "false"
   },
   {
-    "playerId": "аш88",
+    "playerId": "as88",
     "password": "3317",
     "name": "Анастасия Шохина",
     "desc": "",
@@ -21,7 +21,7 @@
     "canStartAuction": "false"
   },
   {
-    "playerId": "мр91",
+    "playerId": "mr91",
     "password": "8526",
     "name": "Марк Рубинштейн",
     "desc": "",
@@ -31,7 +31,7 @@
     "canStartAuction": "false"
   },
   {
-    "playerId": "ст22",
+    "playerId": "st22",
     "password": "3350",
     "name": "Татьяна Стрельцова",
     "desc": "",
@@ -41,7 +41,7 @@
     "canStartAuction": "false"
   },
   {
-    "playerId": "бе55",
+    "playerId": "be55",
     "password": "4675",
     "name": "Елизавета Белова",
     "desc": "",
@@ -51,7 +51,7 @@
     "canStartAuction": "false"
   },
   {
-    "playerId": "фа78",
+    "playerId": "fa78",
     "password": "6155",
     "name": "Алексей Фролов",
     "desc": "",
@@ -61,7 +61,7 @@
     "canStartAuction": "false"
   },
   {
-    "playerId": "ак47",
+    "playerId": "ak47",
     "password": "3645",
     "name": "Анна Кошкина",
     "desc": "",
@@ -71,7 +71,7 @@
     "canStartAuction": "false"
   },
   {
-    "playerId": "фк32",
+    "playerId": "fk32",
     "password": "2279",
     "name": "Фёдор Коржиков",
     "desc": "",
@@ -91,7 +91,7 @@
     "canStartAuction": "false"
   },
   {
-    "playerId": "вл99",
+    "playerId": "lv99",
     "password": "9988",
     "name": "Владимир Лисицын",
     "desc": "",
