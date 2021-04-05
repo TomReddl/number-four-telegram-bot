@@ -43,7 +43,7 @@ public class MoneyTransferCommand extends ServiceCommand {
         var anotherPlayerOpt = Bot.findPlayer(anotherPlayerId);
         if (anotherPlayerOpt.isEmpty()) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Игрок с таким player-id не найден");
+                    "Игрок с таким идентификатором не найден");
             return;
         }
 
