@@ -1,6 +1,7 @@
 package ru.femirion.telegram.number4bot.utils;
 
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
@@ -21,7 +22,7 @@ public class SendUtils {
         try {
             absSender.execute(message);
         } catch (TelegramApiException ex) {
-            log.error(String.format(ERROR_MSG, ex.getMessage(), commandName, userName), ex);
+           // log.error(String.format(ERROR_MSG, ex.getMessage(), commandName, userName), ex);
         }
     }
 
@@ -32,7 +33,7 @@ public class SendUtils {
             message.setPhoto(new InputFile(PhotoUtils.getImage(photoId)));
             absSender.execute(message);
         } catch (TelegramApiException ex) {
-            log.error(String.format(ERROR_MSG, ex.getMessage(), commandName, userName), ex);
+           // log.error(String.format(ERROR_MSG, ex.getMessage(), commandName, userName), ex);
         }
     }
 
