@@ -87,7 +87,6 @@ public final class Bot extends TelegramLongPollingCommandBot {
         String userName = UserUtils.getUserName(msg);
         var settings = Bot.getUserSettings().get(chatId);
 
-        sendToPlayer(chatId, userName, msg.getText().replaceAll("/", ""));
         if (!sendObjectInfoAnswer(chatId, userName, msg.getText().replaceAll("/", ""),
                 settings.getPlayer())) {
             String answer = nonCommand.nonCommandExecute(chatId, userName, msg.getText());
@@ -101,6 +100,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
             boolean playerKnowThisObject = player.getObjects().stream().anyMatch(objectId::equals);
             if (playerKnowThisObject) {
                 var object = objectOptional.get();
+                sendToPlayer(chatId, userName, objectId); // test
                 // обработка того, что пользователь знает несколько объектов
                 SendUtils.exploringSeveralObjectsHandler("", object, player, this, chatId, userName);
             }
