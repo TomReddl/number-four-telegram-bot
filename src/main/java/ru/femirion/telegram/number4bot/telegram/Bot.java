@@ -96,12 +96,11 @@ public final class Bot extends TelegramLongPollingCommandBot {
 
     private Boolean sendObjectInfoAnswer (Long chatId, String userName, String objectId, Player player) {
         var objectOptional = Bot.findObject(objectId);
-        if (objectOptional.isEmpty()) {
+        if (!objectOptional.isEmpty()) {
             boolean playerKnowThisObject = player.getObjects().stream().anyMatch(objectId::equals);
             if (playerKnowThisObject) {
                 var object = objectOptional.get();
-                sendToPlayer(chatId, userName, objectId); // test
-                // обработка того, что пользователь знает несколько объектов
+                //sendToPlayer(chatId, userName, objectId); // test
                 SendUtils.exploringSeveralObjectsHandler("", object, player, this, chatId, userName);
             }
             return Boolean.TRUE;
