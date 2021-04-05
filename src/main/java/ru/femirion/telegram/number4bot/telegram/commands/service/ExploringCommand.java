@@ -76,7 +76,7 @@ public class ExploringCommand extends ServiceCommand {
                 player.setStartExploringTime(null);
                 player.getObjects().add(object.getObjectId());
                 // обработка того, что пользователь знает несколько объектов
-                exploringSeveralObjectsHandler(object, player, absSender, chatId, userName);
+                SendUtils.exploringSeveralObjectsHandler(object, player, absSender, chatId, userName);
             }
             return;
         }
