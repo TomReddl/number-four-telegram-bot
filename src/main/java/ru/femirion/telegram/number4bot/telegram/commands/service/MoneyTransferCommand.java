@@ -49,7 +49,11 @@ public class MoneyTransferCommand extends ServiceCommand {
 
         var anotherPlayer = anotherPlayerOpt.get();
         var count = Long.parseLong(args[1]);
-        if (player.getMoney() < count) {
+        if (player.getMoney() <= 0) {
+            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                    "Вы не можете перевести сумму меньше 0");
+            return;
+        } else if (player.getMoney() < count) {
             sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "На вашем счету недостаточно денег. У вас всего " + player.getMoney() + ", а вы хотите перевести " + count);
             return;
