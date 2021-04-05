@@ -6,10 +6,8 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import ru.femirion.telegram.number4bot.entity.SpecialStaffDesc;
 import ru.femirion.telegram.number4bot.telegram.Bot;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
-
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 @Slf4j
 public class ObjectInfoCommand extends ServiceCommand {
@@ -38,7 +36,7 @@ public class ObjectInfoCommand extends ServiceCommand {
 
         // исследования еще не было, надо начать
         if (args.length != 1) {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вызовите эту команду с идентификатором объекта, например: /object ABCD");
             return;
         }
@@ -59,7 +57,7 @@ public class ObjectInfoCommand extends ServiceCommand {
                 desc = desc + special;
             }
 
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Доступная информация о предмете: "
                             + desc);
             return;
@@ -75,9 +73,9 @@ public class ObjectInfoCommand extends ServiceCommand {
         if (playerKnowThisObject) {
             var object = objectOptional.get();
             // обработка того, что пользователь знает несколько объектов
-            exploringSeveralObjectsHandler(object, player, absSender, chatId, userName);
+            SendUtils.exploringSeveralObjectsHandler(this.getCommandIdentifier(), object, player, absSender, chatId, userName);
         } else {
-            sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+            SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы еще не изучили объект. Чтобы начать изучение вызовите команду /explore " + objectId);
         }
     }

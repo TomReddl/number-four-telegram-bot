@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.femirion.telegram.number4bot.entity.*;
 import ru.femirion.telegram.number4bot.telegram.commands.service.*;
+import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.JsonUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
 import ru.femirion.telegram.number4bot.telegram.nonCommand.NonCommand;
@@ -88,29 +89,21 @@ public final class Bot extends TelegramLongPollingCommandBot {
 
         sendToPlayer(chatId, userName, msg.getText().replaceAll("/", ""));
         if (!sendObjectInfoAnswer(chatId, userName, msg.getText().replaceAll("/", ""),
-                settings.getPlayer().getPlayerId())) {
+                settings.getPlayer())) {
             String answer = nonCommand.nonCommandExecute(chatId, userName, msg.getText());
             sendToPlayer(chatId, userName, answer);
         }
     }
 
-    private Boolean sendObjectInfoAnswer (Long chatId, String userName, String objectId, String playerId) {
-        var staffOpt = Bot.findStaff(objectId);
-        if (staffOpt.isPresent()) {
-            var staff = staffOpt.get();
-            var specialDesc = staff.getSpecialDesc();
-            var desc = staff.getDesc();
-            if (!specialDesc.isEmpty()) {
-                var special = specialDesc.stream()
-                        .filter(s -> s.getPlayerId().equals(playerId))
-                        .map(SpecialStaffDesc::getSpecialDesc)
-                        .findAny()
-                        .orElse("");
-                desc = desc + special;
+    private Boolean sendObjectInfoAnswer (Long chatId, String userName, String objectId, Player player) {
+        var objectOptional = Bot.findObject(objectId);
+        if (objectOptional.isEmpty()) {
+            boolean playerKnowThisObject = player.getObjects().stream().anyMatch(objectId::equals);
+            if (playerKnowThisObject) {
+                var object = objectOptional.get();
+                // обработка того, что пользователь знает несколько объектов
+                SendUtils.exploringSeveralObjectsHandler("", object, player, this, chatId, userName);
             }
-
-            sendToPlayer(chatId, userName,"Доступная информация о предмете: "
-                            + desc);
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
