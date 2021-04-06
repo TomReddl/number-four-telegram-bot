@@ -1,18 +1,35 @@
 package ru.femirion.telegram.number4bot.utils;
 
 import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.femirion.telegram.number4bot.entity.GameObject;
 import ru.femirion.telegram.number4bot.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @UtilityClass
 public class SendUtils {
     private static final String ERROR_MSG = "Ошибка %s. Команда %s. Пользователь: %s";
+
+    public static void sendAnswerWithKeyboard(AbsSender absSender, Long chatId, String text, InlineKeyboardMarkup keyboard) {
+        var message = new SendMessage();
+        message.enableMarkdown(true);
+        message.setChatId(chatId.toString());
+        message.setText(text);
+        message.setReplyMarkup(keyboard);
+        try {
+            absSender.execute(message);
+        } catch (TelegramApiException ex) {
+            // log.error(String.format(ERROR_MSG, ex.getMessage(), commandName, userName), ex);
+        }
+    }
 
     public static void sendAnswer(AbsSender absSender, Long chatId, String commandName, String userName, String text) {
         var message = new SendMessage();
@@ -22,7 +39,7 @@ public class SendUtils {
         try {
             absSender.execute(message);
         } catch (TelegramApiException ex) {
-           // log.error(String.format(ERROR_MSG, ex.getMessage(), commandName, userName), ex);
+            // log.error(String.format(ERROR_MSG, ex.getMessage(), commandName, userName), ex);
         }
     }
 
@@ -33,7 +50,7 @@ public class SendUtils {
             message.setPhoto(new InputFile(PhotoUtils.getImage(photoId)));
             absSender.execute(message);
         } catch (TelegramApiException ex) {
-           // log.error(String.format(ERROR_MSG, ex.getMessage(), commandName, userName), ex);
+            // log.error(String.format(ERROR_MSG, ex.getMessage(), commandName, userName), ex);
         }
     }
 
@@ -63,7 +80,7 @@ public class SendUtils {
             sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getActivationPhotoId());
         }
 
-        if (object.getSecondDependedObjects() == null ) {
+        if (object.getSecondDependedObjects() == null) {
             return;
         }
 
@@ -89,6 +106,25 @@ public class SendUtils {
             sendAnswer(absSender, chatId, commandIdentifier, userName, "Порядок активации: ");
             sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getSecondActivationPhotoId());
         }
+    }
 
+    public static InlineKeyboardMarkup getKeyBoard() {
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
+        InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();
+        inlineKeyboardButton1.setText("Кнопка 1");
+        inlineKeyboardButton1.setCallbackData("Была нажата кнопка 1");
+        inlineKeyboardButton2.setText("Кнопка 2");
+        inlineKeyboardButton2.setCallbackData("Была нажата кнопка 2");
+        List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
+        List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
+        keyboardButtonsRow1.add(inlineKeyboardButton1);
+        // keyboardButtonsRow1.add(new InlineKeyboardButton().setText("Fi4a").setCallbackData("CallFi4a"));
+        keyboardButtonsRow2.add(inlineKeyboardButton2);
+        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+        rowList.add(keyboardButtonsRow1);
+        rowList.add(keyboardButtonsRow2);
+        inlineKeyboardMarkup.setKeyboard(rowList);
+        return inlineKeyboardMarkup;
     }
 }
