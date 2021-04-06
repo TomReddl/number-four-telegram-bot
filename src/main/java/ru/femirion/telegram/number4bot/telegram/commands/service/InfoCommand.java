@@ -33,7 +33,7 @@ public class InfoCommand extends ServiceCommand {
             return;
         }
 
-        SendUtils.sendAnswerWithKeyboard(absSender, chatId,
+        SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                 String.format("*Информация о персонаже:*\n" +
                                 "    playerId: %s\n" +
                                 "    имя: %s\n" +
@@ -45,8 +45,7 @@ public class InfoCommand extends ServiceCommand {
                         settings.getPlayer().getMoney(),
                         settings.getPlayer().getExploringObjectId() == null
                                 ?  "в данный момент Вы не изучаете объект" : settings.getPlayer().getExploringObjectId(),
-                        getObjectCommands(settings.getPlayer().getObjects())),
-                SendUtils.getKeyBoard()
+                        getObjectCommands(settings.getPlayer().getObjects()))
         );
     }
 
