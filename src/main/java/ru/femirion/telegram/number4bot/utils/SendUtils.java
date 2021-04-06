@@ -108,10 +108,10 @@ public class SendUtils {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
         InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Кнопка 1");
-        inlineKeyboardButton1.setCallbackData("Была нажата кнопка 1");
-        inlineKeyboardButton2.setText("Кнопка 2");
-        inlineKeyboardButton2.setCallbackData("Была нажата кнопка 2");
+        inlineKeyboardButton1.setText("Информация");
+        inlineKeyboardButton1.setCallbackData("/info");
+        inlineKeyboardButton2.setText("Исследование");
+        inlineKeyboardButton2.setCallbackData("/explore");
         List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
         List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
