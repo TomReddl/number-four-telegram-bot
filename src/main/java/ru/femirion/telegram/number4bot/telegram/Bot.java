@@ -43,7 +43,6 @@ public final class Bot extends TelegramLongPollingCommandBot {
     private static List<Staff> staff;
     @Getter
     private static List<GlassObject> glassObjects;
-    private Update update;
 
     public Bot(String botName, String botToken) {
         super();
@@ -150,33 +149,6 @@ public final class Bot extends TelegramLongPollingCommandBot {
             execute(answer);
         } catch (TelegramApiException ex) {
             log.error(String.format(NOT_COMMAND, ex.getMessage(), userName), ex);
-        }
-    }
-
-    @Override
-    public void onUpdatesReceived(List<Update> updates) {
-        this.update = updates.get(0);
-        if(update.hasMessage()){
-            if(update.getMessage().hasText()){
-                if(update.getMessage().getText().equals("/info")){
-                    try {
-                        execute(SendUtils.sendAnswerWithKeyboard(update.getMessage().getChatId(),
-                                update.getMessage().getText(),
-                                SendUtils.getKeyBoard()));
-                    } catch (TelegramApiException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } else if(update.hasCallbackQuery()){
-            try {
-                SendMessage message = new SendMessage();
-                message.setText(update.getCallbackQuery().getData());
-                message.setChatId(update.getCallbackQuery().getMessage().getChatId().toString());
-                execute(message);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

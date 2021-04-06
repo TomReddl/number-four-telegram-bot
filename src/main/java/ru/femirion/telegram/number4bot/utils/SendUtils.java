@@ -18,13 +18,17 @@ import java.util.List;
 public class SendUtils {
     private static final String ERROR_MSG = "Ошибка %s. Команда %s. Пользователь: %s";
 
-    public static SendMessage sendAnswerWithKeyboard(Long chatId, String text, InlineKeyboardMarkup keyboard) {
+    public static void sendAnswerWithKeyboard(AbsSender absSender, Long chatId, String text, InlineKeyboardMarkup keyboard) {
         var message = new SendMessage();
         message.enableMarkdown(true);
         message.setChatId(chatId.toString());
         message.setText(text);
         message.setReplyMarkup(keyboard);
-        return message;
+        try {
+            absSender.execute(message);
+        } catch (TelegramApiException ex) {
+            // log.error(String.format(ERROR_MSG, ex.getMessage(), commandName, userName), ex);
+        }
     }
 
     public static void sendAnswer(AbsSender absSender, Long chatId, String commandName, String userName, String text) {
