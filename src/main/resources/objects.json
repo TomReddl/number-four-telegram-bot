@@ -64,8 +64,8 @@
     "fake": "false",
     "photoId": "duck.png",
     "superObjectDesc": "Ключ Бога. Эта схема позволяет попадать через пропавшую комнату в альтернативные реальности, отличающиеся от нашей небольшими деталями. В дальнейшем эта схема может стать основой для поиска необходимой владельцу версии реальности.\n",
-    "superPhotoId": "god_key_scheme.png",
-    "activationPhotoId": "god_key.png",
+    "superPhotoId": "god_key.png",
+    "activationPhotoId": "god_key_scheme.png",
     "dependedObjects": ["6609", "5284", "7892"]
   },
   {
@@ -77,8 +77,8 @@
     "fake": "false",
     "photoId": "puzzle.png",
     "superObjectDesc": "Ключ Бога. Эта схема позволяет попадать через пропавшую комнату в альтернативные реальности, отличающиеся от нашей небольшими деталями. В дальнейшем эта схема может стать основой для поиска необходимой владельцу версии реальности.\n",
-    "superPhotoId": "god_key_scheme.png",
-    "activationPhotoId": "god_key.png",
+    "superPhotoId": "god_key.png",
+    "activationPhotoId": "god_key_scheme.png",
     "dependedObjects": ["0412", "5284", "7892"],
     "secondDependedObjects": ["1372", "0107"],
     "secondSuperObjectDesc": "Источник жизни. Эта схема позволяет исцелять недуги, которые неподвластны медицине. Источник может залечить любую рану, или даже восстановить все тело целиком, если душа все еще находится в нашем мире. Если среди активирующих эту схему есть Постоялец, он может передать свою роль другому человеку, находящемуся рядом.\n",
@@ -94,8 +94,8 @@
     "fake": "false",
     "photoId": "cap.png",
     "superObjectDesc": "Ключ Бога. Эта схема позволяет попадать через пропавшую комнату в альтернативные реальности, отличающиеся от нашей небольшими деталями. В дальнейшем эта схема может стать основой для поиска необходимой владельцу версии реальности.\n",
-    "superPhotoId": "god_key_scheme.png",
-    "activationPhotoId": "god_key.png",
+    "superPhotoId": "god_key.png",
+    "activationPhotoId": "god_key_scheme.png",
     "dependedObjects": ["0412", "6609", "7892"]
   },
   {
@@ -107,8 +107,8 @@
     "fake": "false",
     "superObjectDesc": "Ключ Бога. Эта схема позволяет попадать через пропавшую комнату в альтернативные реальности, отличающиеся от нашей небольшими деталями. В дальнейшем эта схема может стать основой для поиска необходимой владельцу версии реальности.\n",
     "photoId": "spoon.png",
-    "superPhotoId": "god_key_scheme.png",
-    "activationPhotoId": "god_key.png",
+    "superPhotoId": "god_key.png",
+    "activationPhotoId": "god_key_scheme.png",
     "dependedObjects": ["0412", "6609", "5284"]
   },
   {
@@ -120,8 +120,8 @@
     "fake": "false",
     "superObjectDesc": "Стирание. Эта схема уничтожает искусственную пропавшую комнату и все объекты, которые были созданы внутри комнаты. При этом возвращается оригинальный объект, который был использован для создания комнаты. В дальнейшем эта схема может стать основой для стирания оригинальной пропавшей комнаты и полного избавления от объектов.\n",
     "photoId": "dice.png",
-    "superPhotoId": "obliteration_scheme.png",
-    "activationPhotoId": "obliteration.png",
+    "superPhotoId": "obliteration.png",
+    "activationPhotoId": "obliteration_scheme.png",
     "dependedObjects": ["9010", "0107", "8761"]
   },
   {
@@ -133,8 +133,8 @@
     "fake": "false",
     "superObjectDesc": "Стирание. Эта схема уничтожает искусственную пропавшую комнату и все объекты, которые были созданы внутри комнаты. При этом возвращается оригинальный объект, который был использован для создания комнаты. В дальнейшем эта схема может стать основой для стирания оригинальной пропавшей комнаты и полного избавления от объектов.\n",
     "photoId": "chip.png",
-    "superPhotoId": "obliteration_scheme.png",
-    "activationPhotoId": "obliteration.png",
+    "superPhotoId": "obliteration.png",
+    "activationPhotoId": "obliteration_scheme.png",
     "dependedObjects": ["2545", "0107", "8761"]
   },
   {
@@ -146,13 +146,13 @@
     "fake": "false",
     "photoId": "nut.png",
     "superObjectDesc": "Стирание. Эта схема уничтожает искусственную пропавшую комнату и все объекты, которые были созданы внутри комнаты. При этом возвращается оригинальный объект, который был использован для создания комнаты. В дальнейшем эта схема может стать основой для стирания оригинальной пропавшей комнаты и полного избавления от объектов.\n",
-    "superPhotoId": "obliteration_scheme.png",
-    "activationPhotoId": "obliteration.png",
+    "superPhotoId": "obliteration.png",
+    "activationPhotoId": "obliteration_scheme.png",
     "dependedObjects": ["2545", "9010", "8761"],
     "secondDependedObjects": ["1372", "6609"],
     "secondSuperObjectDesc": "Источник жизни. Эта схема позволяет исцелять недуги, которые неподвластны медицине. Источник может залечить любую рану, или даже восстановить все тело целиком, если душа все еще находится в нашем мире. Если среди активирующих эту схему есть Постоялец, он может передать свою роль другому человеку, находящемуся рядом.\n",
-    "secondSuperPhotoId": "live_source_scheme.png",
-    "secondActivationPhotoId": "live_source.png"
+    "secondSuperPhotoId": "live_source.png",
+    "secondActivationPhotoId": "live_source_scheme.png"
   },
   {
     "objectId": "8761",
@@ -163,8 +163,8 @@
     "fake": "false",
     "superObjectDesc": "Стирание. Эта схема уничтожает искусственную пропавшую комнату и все объекты, которые были созданы внутри комнаты. При этом возвращается оригинальный объект, который был использован для создания комнаты. В дальнейшем эта схема может стать основой для стирания оригинальной пропавшей комнаты и полного избавления от объектов.\n",
     "photoId": "lodger.png",
-    "superPhotoId": "obliteration_scheme.png",
-    "activationPhotoId": "obliteration.png",
+    "superPhotoId": "obliteration.png",
+    "activationPhotoId": "obliteration_scheme.png",
     "dependedObjects": ["2545", "9010", "0107"]
   },
   {
