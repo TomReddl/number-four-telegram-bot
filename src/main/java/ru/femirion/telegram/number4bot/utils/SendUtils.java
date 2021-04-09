@@ -67,7 +67,7 @@ public class SendUtils {
         sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getPhotoId());
 
         // если 0 - надо выслать пиктограммы
-        if (countOfDependsObject == 0) {
+        if (countOfDependsObject == 0 && !object.getSuperPhotoId().isEmpty()) {
             sendAnswer(absSender, chatId, commandIdentifier, userName, "Пиктограммы связанных объектов: ");
             sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getSuperPhotoId());
         }
@@ -106,7 +106,7 @@ public class SendUtils {
         // если 2 - надо выслать описание супер-объекта
         if (countOfSecondDependsObject == 2 || countOfSecondDependsObject == 3) {
             sendAnswer(absSender, chatId, commandIdentifier, userName, object.getSecondSuperObjectDesc());
-            sendAnswer(absSender, chatId, commandIdentifier, userName, "Порядок активации: ");
+            sendAnswer(absSender, chatId, commandIdentifier, userName, "Порядок активации второй схемы: ");
             sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getSecondActivationPhotoId());
         }
     }
