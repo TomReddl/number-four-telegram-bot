@@ -228,7 +228,10 @@
     "name": "Ключ",
     "desc": "Позволяет открыть дверь в Пропавшую Комнату.",
     "canBeExploring": "true",
-    "fake": "false"
+    "fake": "false",
+    "superPhotoId": "",
+    "activationPhotoId": "",
+    "dependedObjects": []
   },
   {
     "objectId": "3681",
