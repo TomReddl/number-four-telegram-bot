@@ -39,7 +39,7 @@ public class InfoCommand extends ServiceCommand {
                                 "    имя: %s\n" +
                                 "    деньги: %s\n" +
                                 "    сейчас изучается: %s\n" +
-                                "    известные объекты:\n %s\n\n",
+                                "    известные объекты:\n%s\n\n",
                         settings.getPlayerId(),
                         settings.getPlayer().getName(),
                         settings.getPlayer().getMoney(),
