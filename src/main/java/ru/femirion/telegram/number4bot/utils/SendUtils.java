@@ -61,7 +61,8 @@ public class SendUtils {
                 .count();
 
         sendAnswer(absSender, chatId, commandIdentifier, userName,
-                "Информация об объекте: " + object.getDesc() + (Bot.getIsRoomBroke() ? object.getBrokenDesk() : ""));
+                "Информация об объекте: " + object.getDesc() +
+                        (Bot.getIsRoomBroke() && !object.getBrokenDesk().isEmpty() ? "\n\n" + object.getBrokenDesk() : ""));
         sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getPhotoId());
 
         // если 0 - надо выслать пиктограммы
