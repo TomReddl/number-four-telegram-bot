@@ -73,7 +73,7 @@ public class SendUtils {
         }
         // если 1 - надо выслать расположение объектов в схеме
         if (countOfDependsObject == 1) {
-            sendAnswer(absSender, chatId, commandIdentifier, userName, "Расположение объектов в схеме: ");
+            sendAnswer(absSender, chatId, commandIdentifier, userName, "Пиктограммы объектов, необходимых для сборки схемы: ");
             sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getActivationPhotoId());
         }
         // если 2 или 3 - надо выслать описание супер-объекта
@@ -99,7 +99,7 @@ public class SendUtils {
         }
         // если 1 - надо выслать порядок активации
         if (countOfSecondDependsObject == 1) {
-            sendAnswer(absSender, chatId, commandIdentifier, userName, "Расположение объектов во второй схемы: ");
+            sendAnswer(absSender, chatId, commandIdentifier, userName, "Пиктограммы объектов, необходимых для сборки второй схемы: ");
             sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getSecondActivationPhotoId());
             return;
         }
