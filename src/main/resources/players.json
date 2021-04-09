@@ -8,6 +8,7 @@
       ""
     ],
     "money": 10000,
+    "isMaster": "false",
     "canStartAuction": "false"
   },
   {
@@ -18,6 +19,7 @@
     "objects": ["0412", "5284"
     ],
     "money": 55000,
+    "isMaster": "false",
     "canStartAuction": "false"
   },
   {
@@ -28,6 +30,7 @@
     "objects": ["9898"
     ],
     "money": 7000,
+    "isMaster": "false",
     "canStartAuction": "false"
   },
   {
@@ -38,6 +41,7 @@
     "objects": [
     ],
     "money": 0,
+    "isMaster": "false",
     "canStartAuction": "false"
   },
   {
@@ -48,6 +52,7 @@
     "objects": [
     ],
     "money": 42000,
+    "isMaster": "false",
     "canStartAuction": "false"
   },
   {
@@ -58,6 +63,7 @@
     "objects": ["1372"
     ],
     "money": 18000,
+    "isMaster": "false",
     "canStartAuction": "false"
   },
   {
@@ -68,6 +74,7 @@
     "objects": ["7587", "2545"
     ],
     "money": 48000,
+    "isMaster": "false",
     "canStartAuction": "false"
   },
   {
@@ -77,6 +84,7 @@
     "desc": "",
     "objects": [],
     "money": 10000,
+    "isMaster": "false",
     "canStartAuction": "true"
   },
   {
@@ -87,6 +95,7 @@
     "objects": ["8761"
     ],
     "money": 20000,
+    "isMaster": "false",
     "canStartAuction": "false"
   },
   {
@@ -97,6 +106,27 @@
     "objects": ["9010"
     ],
     "money": 12000,
+    "isMaster": "false",
+    "canStartAuction": "false"
+  },
+  {
+    "playerId": "ks1991",
+    "password": "3441",
+    "name": "Костя Шаров (мастер)",
+    "desc": "",
+    "objects": [],
+    "money": 0,
+    "isMaster": "true",
+    "canStartAuction": "false"
+  },
+  {
+    "playerId": "1991kn",
+    "password": "9876",
+    "name": "Коля Коровкин (мастер)",
+    "desc": "",
+    "objects": [],
+    "money": 0,
+    "isMaster": "true",
     "canStartAuction": "false"
   }
 ]

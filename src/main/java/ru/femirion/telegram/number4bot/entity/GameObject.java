@@ -13,6 +13,7 @@ public class GameObject {
   private String objectId;
   private String name;
   private String desc;
+  private String brokenDesk;
   private String superObjectDesc;
   private String secondSuperObjectDesc;
   private String photoId;

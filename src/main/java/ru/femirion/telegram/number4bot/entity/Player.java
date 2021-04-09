@@ -15,6 +15,7 @@ import java.util.List;
 public class Player {
   private String playerId;
   private String password;
+  private Boolean isMaster;
   private Long chatId;
   private String name;
   private String desc;

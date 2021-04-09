@@ -39,6 +39,8 @@ public final class Bot extends TelegramLongPollingCommandBot {
     private static List<GameObject> gameObjects;
     @Getter @Setter
     private static Auction auction;
+    @Getter @Setter
+    private static Boolean isRoomBroke;
     @Getter
     private static List<Staff> staff;
     @Getter
@@ -62,6 +64,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
         register(new CloseAuctionCommand("sold", "Завершение аукциона"));
         register(new MoneyTransferCommand("transfer", "Денежный перевод от игрока к игроку"));
         register(new ShareInfoCommand("share", "Поделиться информацией об объекте"));
+        register(new BrokeCommand("broke", "Сломать или починить комнату"));
         // TODO delete me before production!!!
         register(new TestCommand("test", "тестовая команда"));
         userSettings = new HashMap<>();
@@ -69,6 +72,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
         gameObjects = JsonUtils.getObjects();
         staff = JsonUtils.getStaff();
         glassObjects = JsonUtils.getGlassInfo();
+        isRoomBroke = Boolean.FALSE;
     }
 
     @Override
