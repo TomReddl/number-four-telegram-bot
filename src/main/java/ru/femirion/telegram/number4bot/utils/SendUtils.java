@@ -63,7 +63,7 @@ public class SendUtils {
         sendAnswer(absSender, chatId, commandIdentifier, userName,
                 "Информация об объекте: " + object.getDesc() +
                         (Bot.getIsRoomBroke() && !object.getBrokenDesk().isEmpty() ?
-                                "\n\n" + "<span style=\"color:red\">*НОВОЕ СВОЙСТВО:* </span>." + object.getBrokenDesk() : ""));
+                                "\n\n" + "*НОВОЕ СВОЙСТВО:* " + object.getBrokenDesk() : ""));
         sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getPhotoId());
 
         // если 0 - надо выслать пиктограммы
