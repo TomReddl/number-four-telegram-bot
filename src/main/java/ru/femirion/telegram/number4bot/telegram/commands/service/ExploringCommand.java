@@ -15,8 +15,6 @@ import java.time.temporal.ChronoUnit;
 public class ExploringCommand extends ServiceCommand {
 
     private static String fastExploringId = "pv60";
-    private static int fastExploringTime = 1; // TODO не забыть поменять на настоящее время для игры (5 минут)
-    private static int exploringTime = 2;
 
     public ExploringCommand(String identifier, String description) {
         super(identifier, description);
@@ -112,7 +110,7 @@ public class ExploringCommand extends ServiceCommand {
         player.setStartExploringTime(LocalDateTime.now());
         player.setExploringObjectId(objectId);
 
-        int time = player.getPlayerId().equals(fastExploringId) ? fastExploringTime : exploringTime;
+        int time = player.getPlayerId().equals(fastExploringId) ? Bot.getFastExploreTime() : Bot.getExploreTime();
         SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName, "Вы начали изучать объект с идентификатором="
                 + objectId + ". Это займет у вас " + time + " минут. Не забудьте обратиться к боту за результатом");
         log.info("player has begun to exporer objectId={}, objectId={}", settings.getPlayerId(), objectId);
@@ -131,7 +129,7 @@ public class ExploringCommand extends ServiceCommand {
         if (days > 1 || hours > 1) {
             return -1;
         }
-        int time = playerId.equals(fastExploringId) ? fastExploringTime : exploringTime;
+        int time = playerId.equals(fastExploringId) ? Bot.getFastExploreTime() : Bot.getExploreTime();
         return time - (int) minutes;
     }
 }
