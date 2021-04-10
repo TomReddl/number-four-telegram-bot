@@ -18,7 +18,7 @@ public class InfoCommand extends ServiceCommand {
     }
 
     @Override
-    public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
+    public void execute(AbsSender absSender, User user, Chat chat, String[] args) {
         var userName = UserUtils.getUserName(user);
         var chatId = chat.getId();
         var settings = Bot.getUserSettings(chatId);
@@ -31,6 +31,32 @@ public class InfoCommand extends ServiceCommand {
         if (player == null) {
             sendNotAutMessage(absSender, chatId, userName);
             return;
+        }
+        // мастер может смотреть информацию о других игроках
+        if (player.getIsMaster()) {
+            var anotherPlayerId = args[0];
+            var anotherPlayerOpt = Bot.findPlayer(anotherPlayerId);
+            if (anotherPlayerOpt.isEmpty()) {
+                SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
+                        "Игрок с таким идентификатором не найден");
+                return;
+            }
+            var anotherPlayer = anotherPlayerOpt.get();
+
+            SendUtils.sendAnswer(absSender, chatId, "", "",
+                    String.format("*Информация о персонаже:*\n" +
+                                    "    playerId: %s\n" +
+                                    "    имя: %s\n" +
+                                    "    деньги: %s\n" +
+                                    "    сейчас изучается: %s\n" +
+                                    "    известные объекты:\n%s\n\n",
+                            anotherPlayer.getPlayerId(),
+                            anotherPlayer.getName(),
+                            anotherPlayer.getMoney(),
+                            anotherPlayer.getExploringObjectId() == null
+                                    ?  "в данный момент игрок не изучает объект" : anotherPlayer.getExploringObjectId(),
+                            getObjectCommands(anotherPlayer.getObjects()))
+            );
         }
 
         SendUtils.sendAnswerWithKeyboard(absSender, chatId,

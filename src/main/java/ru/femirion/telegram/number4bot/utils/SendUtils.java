@@ -78,7 +78,7 @@ public class SendUtils {
         }
         // если 2 или 3 - надо выслать описание супер-объекта
         if (countOfDependsObject == 2 || countOfDependsObject == 3) {
-            sendAnswer(absSender, chatId, commandIdentifier, userName, object.getSuperObjectDesc());
+            sendAnswer(absSender, chatId, commandIdentifier, userName, "*ЭФФЕКТ СХЕМЫ: *" + object.getSuperObjectDesc());
             sendAnswer(absSender, chatId, commandIdentifier, userName, "Расположение объектов в схеме: ");
             sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getActivationPhotoId());
         }
@@ -105,7 +105,7 @@ public class SendUtils {
         }
         // если 2 - надо выслать описание супер-объекта
         if (countOfSecondDependsObject == 2 || countOfSecondDependsObject == 3) {
-            sendAnswer(absSender, chatId, commandIdentifier, userName, object.getSecondSuperObjectDesc());
+            sendAnswer(absSender, chatId, commandIdentifier, userName, "*ЭФФЕКТ ВТОРОЙ СХЕМЫ: *" + object.getSecondSuperObjectDesc());
             sendAnswer(absSender, chatId, commandIdentifier, userName, "Расположение объектов во второй схемы: ");
             sendPhotoAnswer(absSender, chatId, commandIdentifier, userName, object.getSecondActivationPhotoId());
         }
