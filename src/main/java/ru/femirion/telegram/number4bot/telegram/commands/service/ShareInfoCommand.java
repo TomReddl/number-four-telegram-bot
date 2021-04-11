@@ -62,7 +62,10 @@ public class ShareInfoCommand extends ServiceCommand {
             anotherPlayer.getObjects().add(object.getObjectId());
 
             SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вы отправили игроку " + anotherPlayer.getName() + " информацию об объекте" + objectId);
+                    "Вы отправили игроку " + anotherPlayer.getName() + " информацию об объекте " + object.getName());
+
+            SendUtils.sendAnswer(absSender, anotherPlayer.getChatId(), this.getCommandIdentifier(), userName,
+                    "Игрок " + player.getName() + " отправил Вам информацию об объекте " + object.getName());
         } else {
             SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы еще не изучили объект. Чтобы начать изучение вызовите команду /explore " + objectId);

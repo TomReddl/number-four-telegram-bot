@@ -67,6 +67,6 @@ public class MoneyTransferCommand extends ServiceCommand {
                 "Перевод игроку " + anotherPlayer.getName() + " совершен успешно!");
 
         SendUtils.sendAnswer(absSender, anotherPlayer.getChatId(), this.getCommandIdentifier(), userName,
-                "Игрок " + player.getName() + " перевел Вам " + count);
+                "Игрок " + player.getName() + " перевел Вам " + count + " рублей.");
     }
 }
