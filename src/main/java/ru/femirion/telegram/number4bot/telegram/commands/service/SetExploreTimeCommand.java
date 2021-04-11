@@ -37,7 +37,7 @@ public class SetExploreTimeCommand extends ServiceCommand {
         Bot.setFastExploreTime(fastExploreTime != 0 ? fastExploreTime : Bot.getExploreTime() / 2);
 
         SendUtils.sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                "Задано новое время исследования: " + Bot.getExploreTime() + "мин.\n" +
-                "Задано новое время ускоренного исследования: " + Bot.getFastExploreTime() + "мин.\n");
+                "Задано новое время исследования: " + Bot.getExploreTime() + " мин.\n" +
+                "Задано новое время ускоренного исследования: " + Bot.getFastExploreTime() + " мин.\n");
     }
 }
