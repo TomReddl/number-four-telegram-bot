@@ -36,11 +36,11 @@ public class GlassCommand extends ServiceCommand {
 
         if (args.length != 1) {
             SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                    "Вызовите эту команду с идентификатором объекта, например: /glass ABCD");
+                    "Вызовите эту команду с идентификатором объекта, например: /glass gl1234");
             return;
         }
 
-        if (!player.getObjects().contains("ЗР8ЬЬ")) {
+        if (!player.getObjects().contains("9062")) {
             SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Изучите очки перед использованием");
             return;

@@ -1,9 +1,7 @@
 package ru.femirion.telegram.number4bot.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,6 +22,8 @@ public class Player {
   private LocalDateTime startExploringTime;
   @JsonIgnore
   private String exploringObjectId;
+  @JsonIgnore
+  private Boolean sendExploreNotises;
   private long money;
   private boolean canStartAuction;
 }

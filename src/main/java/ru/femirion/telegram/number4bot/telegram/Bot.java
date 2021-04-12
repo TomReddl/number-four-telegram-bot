@@ -70,6 +70,7 @@ public final class Bot extends TelegramLongPollingCommandBot {
         register(new ShareInfoCommand("share", "Поделиться информацией об объекте"));
         register(new BrokeCommand("broke", "Сломать или починить комнату"));
         register(new SetExploreTimeCommand("setexploretime", "Задать время исследования"));
+        register(new SwitchExploreNoticesCommand("notices", "Включить/выключить уведомления об исследованиях"));
         // TODO delete me before production!!!
         register(new TestCommand("test", "тестовая команда"));
         userSettings = new HashMap<>();

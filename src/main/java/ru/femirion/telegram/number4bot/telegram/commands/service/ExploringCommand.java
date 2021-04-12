@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
+import ru.femirion.telegram.number4bot.entity.Player;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
@@ -69,7 +70,28 @@ public class ExploringCommand extends ServiceCommand {
                 }
 
                 SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
-                        "Вы изучили объект идентификатором=" + player.getExploringObjectId());
+                        "Вы изучили объект " + object.getName());
+
+                try {
+                    Player master1 = Bot.findPlayer("1991kn").get();
+                    if (master1.getSendExploreNotises()) {
+                        // отправка мастеру уведомления
+                        SendUtils.sendAnswer(absSender, master1.getChatId(),
+                                this.getCommandIdentifier(), userName, player.getName() +
+                                        " изучил " + object.getName());
+                    }
+
+                    Player master2 = Bot.findPlayer("ks1991").get();
+                    if (master1.getSendExploreNotises()) {
+                        // отправка мастеру уведомления
+                        SendUtils.sendAnswer(absSender, master2.getChatId(),
+                                this.getCommandIdentifier(), userName, player.getName() +
+                                        " изучил " + object.getName());
+                    }
+                } catch (Exception e) {
+                    log.info(e.getLocalizedMessage());
+                }
+
                 player.setExploringObjectId(null);
                 player.setStartExploringTime(null);
                 player.getObjects().add(object.getObjectId());

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
+import ru.femirion.telegram.number4bot.entity.Player;
 import ru.femirion.telegram.number4bot.telegram.Bot;
 import ru.femirion.telegram.number4bot.utils.SendUtils;
 import ru.femirion.telegram.number4bot.utils.UserUtils;
@@ -66,6 +67,26 @@ public class ShareInfoCommand extends ServiceCommand {
 
             SendUtils.sendAnswer(absSender, anotherPlayer.getChatId(), this.getCommandIdentifier(), userName,
                     "Игрок " + player.getName() + " отправил Вам информацию об объекте " + object.getName());
+
+            try {
+                Player master1 = Bot.findPlayer("1991kn").get();
+                if (master1.getSendExploreNotises()) {
+                    // отправка мастеру уведомления
+                    SendUtils.sendAnswer(absSender, master1.getChatId(),
+                            this.getCommandIdentifier(), userName, player.getName() +
+                                    " поделился информацией об объекте " + object.getName() + " с " + anotherPlayer.getName());
+                }
+
+                Player master2 = Bot.findPlayer("ks1991").get();
+                if (master2.getSendExploreNotises()) {
+                    // отправка мастеру уведомления
+                    SendUtils.sendAnswer(absSender, master2.getChatId(),
+                            this.getCommandIdentifier(), userName, player.getName() +
+                                    " поделился информацией об объекте " + object.getName() + " с " + anotherPlayer.getName());
+                }
+            } catch (Exception e) {
+                log.info(e.getLocalizedMessage());
+            }
         } else {
             SendUtils.sendAnswer(absSender, chatId, this.getCommandIdentifier(), userName,
                     "Вы еще не изучили объект. Чтобы начать изучение вызовите команду /explore " + objectId);
